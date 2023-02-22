@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('uf', 02);
-            $table->string('nome', 02);
+            $table->string('nome', 50);
         });
     }
 
