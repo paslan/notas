@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cidade extends Model
 {
-    use HasFactory;
+    protected $table = 'cidades';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'nome',
+        'estado_id',
+    ];
+
+    public function Estado()
+    {
+        return $this->belongsTo(Estado::class, 'estado_id');
+    }
+
 }

@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estado extends Model
 {
-    use HasFactory;
+    protected $table = 'estados';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'id',
+        'uf',
+        'nome'
+    ];
+
+    public function Cidades(){
+        return $this->hasMany(Cidade::class, 'id');
+    }
 }

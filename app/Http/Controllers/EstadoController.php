@@ -16,6 +16,8 @@ class EstadoController extends Controller
     {
         $estados=Estado::all();
         dd($estados);
+
+        
     }
 
     /**
