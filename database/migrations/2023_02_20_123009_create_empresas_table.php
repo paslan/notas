@@ -26,9 +26,8 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreignId('cidade_id')->constrained();
-
-            $table->foreignId('estado_id')->constrained();
+            $table->bigInteger('estado_id');
+            $table->bigInteger('cidade_id');
 
         });
     }
