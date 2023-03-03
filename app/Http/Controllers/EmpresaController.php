@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -13,7 +15,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        return "Index";
+        $data = Empresa::latest()->paginate(5);
+
+        return view('./empresas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +27,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        $estados = Estado::orderBy('name')->get();
+        return view('./empresas/create', compact('estados'));
     }
 
     /**
@@ -34,7 +39,29 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome'          => 'required',
+            'razao_social'  => 'required',
+            'endereco'      => 'required',
+            'nro'           => 'required',
+            'cnpj'          => 'required',
+        ]);
+
+        $empresa = new Empresa;
+
+        $empresa->nome          = $request->nome;
+        $empresa->razao_social  = $request->razao_social;
+        $empresa->cnpj          = $request->cnpj;
+        $empresa->endereco      = $request->endereco;
+        $empresa->nro           = $request->nro;
+        $empresa->complemento   = $request->complemento;
+        $empresa->bairro        = $request->bairro;
+        $empresa->cidade        = $request->cidade;
+        $empresa->uf            = $request->uf;
+
+        $empresa->save();
+
+        return redirect()->route('empresa.index')->with('sucess', 'Empresa adicionado com sucesso.');
     }
 
     /**
@@ -45,7 +72,7 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('./empresas/show');
     }
 
     /**
@@ -56,7 +83,7 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('./empresas/edit', compact('empresa'));
     }
 
     /**
@@ -68,7 +95,25 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome'          => 'required',
+            'razao_social'  => 'required',
+            'endereco'      => 'required',
+            'nro'           => 'required',
+            'cnpj'          => 'required',
+        ]);
+
+        $empresa = Empresa::find($request->id);
+        $empresa->nome = $request->nome;
+        $empresa->razao_social = $request->razao_social;
+        $empresa->endereco = $request->endereco;
+        $empresa->nro = $request->nro;
+        $empresa->cnpj = $request->cnpj;
+
+        $empresa->save();
+
+        return redirect()->route('empresa.index')->with('sucess', 'Empresa atualizada com sucesso.');
+
     }
 
     /**
@@ -77,8 +122,11 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Empresa $empresa)
     {
-        //
+        $empresa->delete();
+
+        return redirect()->route('empresa.index')->with('sucess', 'Empresa excluida com sucesso.');
+
     }
 }

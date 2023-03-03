@@ -23,12 +23,10 @@ return new class extends Migration
             $table->string('nro', 20);
             $table->string('complemento', 50)->nullable();
             $table->string('bairro', 50);
+            $table->string('cidade', 70);
+            $table->string('uf', 02);
 
             $table->timestamps();
-
-            $table->bigInteger('estado_id');
-            $table->bigInteger('cidade_id');
-
         });
     }
 

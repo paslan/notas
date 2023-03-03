@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 return new class extends Migration
 {
     /**
@@ -14,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function (Blueprint $table) {
+        Schema::create('contatos', function (Blueprint $table) {
             $table->id();
-
-            $table->string('uf', 02);
-            $table->string('nome', 50);
+            $table->foreignid('empresa_id')->constrained();
+            $table->string('nome', 100);
+            $table->string('email', 70);
+            $table->string('telefone1', 15);
+            $table->string('telefone2', 15);
+            $table->timestamps();
         });
     }
 
@@ -29,10 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('estados', function (Blueprint $table) {
-            Schema::disableForeignKeyConstraints();
-            Schema::dropIfExists('estados');
-            Schema::enableForeignKeyConstraints();
-        });
+        Schema::dropIfExists('contatos');
     }
 };

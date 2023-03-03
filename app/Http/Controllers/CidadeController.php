@@ -83,4 +83,23 @@ class CidadeController extends Controller
     {
         //
     }
+
+    public function popula (){
+        $cidades=Cidade::all();
+        return $cidades;
+    }
+
+    public function loadCidades(Request $request)
+    {
+        $dataForm = $request->all();
+        $estado_id = $dataForm['estado_id'];
+        $cidades = Cidade::all()->where('states_id', '=', $estado_id);
+        return view('cidade_ajax', ['cidades' => $cidades]);
+    }
+
+    public function encontraCidades(Request $request){
+        $cidades = Cidade::all();
+        return $cidades->where('state_id', '=', $request['state_id']);
+    }
+
 }
