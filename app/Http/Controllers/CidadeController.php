@@ -95,5 +95,4 @@ class CidadeController extends Controller
         return $cidades->where('estado_id', '=', $request['estado_id']);
     }
 
-
 }

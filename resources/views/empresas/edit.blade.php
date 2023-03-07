@@ -3,7 +3,13 @@
 @section('content')
 
 <div class="card">
-	<div class="card-header">Edit Empresa</div>
+    <div class="row">
+        <div class="col col-md-6"><b>Empresa Edit</b></div>
+        <div class="col col-md-6">
+            <a href="{{ route('empresas.index') }}" class="btn btn-primary btn-sm float-end">View All</a>
+        </div>
+    </div>
+
 	<div class="card-body">
 		<form method="post" action="{{ route('empresas.update', $empresa->id) }}" enctype="multipart/form-data">
 			@csrf

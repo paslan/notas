@@ -80,8 +80,8 @@ class EmpresaController extends Controller
         $estado = Estado::find($empresa->estado_id);
         return view('./empresas/show', [
             'empresa' => $empresa,
-            'estado'  => $estado,
-            'cidade'  => $cidade
+            'cidade'  => $cidade,
+            'estado'  => $estado
         ]);
     }
 
