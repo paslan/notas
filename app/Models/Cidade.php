@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cidade extends Model
 {
-    protected $table = 'cities';
+    protected $table = 'cidades';
 
     protected $primaryKey = 'id';
 

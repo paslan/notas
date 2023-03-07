@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('cidade_id');
+            $table->foreignId('estado_id');
+
             $table->string('nome', 255);
             $table->string('razao_social', 255);
             $table->string('cnpj', 20);
@@ -23,10 +26,10 @@ return new class extends Migration
             $table->string('nro', 20);
             $table->string('complemento', 50)->nullable();
             $table->string('bairro', 50);
-            $table->string('cidade', 70);
-            $table->string('uf', 02);
 
             $table->timestamps();
+
+
         });
     }
 

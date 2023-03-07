@@ -93,13 +93,13 @@ class CidadeController extends Controller
     {
         $dataForm = $request->all();
         $estado_id = $dataForm['estado_id'];
-        $cidades = Cidade::all()->where('states_id', '=', $estado_id);
+        $cidades = Cidade::all()->where('estado_id', '=', $estado_id);
         return view('cidade_ajax', ['cidades' => $cidades]);
     }
 
     public function encontraCidades(Request $request){
         $cidades = Cidade::all();
-        return $cidades->where('state_id', '=', $request['state_id']);
+        return $cidades->where('estado_id', '=', $request['estado_id']);
     }
 
 }

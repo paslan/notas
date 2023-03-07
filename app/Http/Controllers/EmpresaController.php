@@ -13,7 +13,8 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function index()
     {
         $data = Empresa::latest()->paginate(5);
 
@@ -27,7 +28,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $estados = Estado::orderBy('name')->get();
+        $estados = Estado::orderBy('nome')->get();
         return view('./empresas/create', compact('estados'));
     }
 
@@ -47,6 +48,7 @@ class EmpresaController extends Controller
             'cnpj'          => 'required',
         ]);
 
+
         $empresa = new Empresa;
 
         $empresa->nome          = $request->nome;
@@ -56,12 +58,12 @@ class EmpresaController extends Controller
         $empresa->nro           = $request->nro;
         $empresa->complemento   = $request->complemento;
         $empresa->bairro        = $request->bairro;
-        $empresa->cidade        = $request->cidade;
-        $empresa->uf            = $request->uf;
+        $empresa->cidade_id     = $request->cidade_id;
+        $empresa->estado_id     = $request->estado_id;
 
         $empresa->save();
 
-        return redirect()->route('empresa.index')->with('sucess', 'Empresa adicionado com sucesso.');
+        return redirect()->route('empresas.index')->with('sucess', 'Empresa adicionado com sucesso.');
     }
 
     /**
@@ -100,7 +102,7 @@ class EmpresaController extends Controller
             'razao_social'  => 'required',
             'endereco'      => 'required',
             'nro'           => 'required',
-            'cnpj'          => 'required',
+            'cnpj'          => 'required|cnpj|formato_cnpj',
         ]);
 
         $empresa = Empresa::find($request->id);
@@ -112,7 +114,7 @@ class EmpresaController extends Controller
 
         $empresa->save();
 
-        return redirect()->route('empresa.index')->with('sucess', 'Empresa atualizada com sucesso.');
+        return redirect()->route('empresas.index')->with('sucess', 'Empresa atualizada com sucesso.');
 
     }
 
@@ -126,7 +128,8 @@ class EmpresaController extends Controller
     {
         $empresa->delete();
 
-        return redirect()->route('empresa.index')->with('sucess', 'Empresa excluida com sucesso.');
+        return redirect()->route('empresas.index')->with('sucess', 'Empresa excluida com sucesso.');
 
     }
+
 }

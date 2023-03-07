@@ -22,7 +22,7 @@
 	<div class="card-body">
 		<table class="table table-bordered">
 			<tr>
-				<th>Image</th>
+				<th>Id</th>
 				<th>Nome</th>
 				<th>Razao Social</th>
 				<th>CNPJ</th>
@@ -32,7 +32,7 @@
 				@foreach($data as $row)
 
 					<tr>
-						<td></td>
+						<td>{{ $row->id }}</td>
 						<td>{{ $row->nome }}</td>
 						<td>{{ $row->razao_social }}</td>
 						<td>{{ $row->cnpj }}</td>

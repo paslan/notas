@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estado extends Model
 {
-    protected $table = 'states';
+    protected $table = 'estados';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name',
-        'abbr'
+        'nome',
+        'abrev'
     ];
 
     public function Cidades(){

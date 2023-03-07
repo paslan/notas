@@ -19,7 +19,7 @@
 <div class="card">
 	<div class="card-header">Add Empresa</div>
 	<div class="card-body">
-		<form name="empresaform" id="empresaform" method="post">
+		<form name="empresaform" id="empresaform" method="post" action="{{ route('empresas.store') }}">
 			@csrf
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">Nome</label>
@@ -30,13 +30,13 @@
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">Razao Social</label>
 				<div class="col-sm-10">
-					<input type="text" name="razao_social" class="form-control" />
+					<input type="text" name="razao_social" onkeyup="maiuscula(this)" class="form-control" />
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">CNPJ</label>
 				<div class="col-sm-10">
-					<input type="text" name="cnpj" class="form-control" />
+					<input type="text" name="cnpj" id="cnpj" class="form-control" />
 				</div>
 			</div>
 			<div class="row mb-3">
@@ -69,7 +69,7 @@
                     <select class="form-control" data-url="{{ url('encontrar-cidades') }}" data-token="{{ csrf_token() }}" onchange="changeCity(this)" name="estado_id" id="estado_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($estados as $estado)
-                            <option value="{{ $estado['id'] }}" @if(old('estado_id') == $estado['id']) {{ 'selected' }} @endif>{{ $estado['name'] }}</option>
+                            <option value="{{ $estado['id'] }}" @if(old('estado_id') == $estado['id']) {{ 'selected' }} @endif>{{ $estado['nome'] }}</option>
                         @endforeach
                     </select>
 				</div>
@@ -93,17 +93,20 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+        integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
 <script>
-function changeCity(response) {
+    function changeCity(response) {
+        //alert(response.value);
     $.ajax({
         url: $(response).data('url'),
         type: 'post',
-        data: {_method: 'post', _token: $(response).data('token'), state_id: response.value},
+        data: {_method: 'post', _token: $(response).data('token'), estado_id: response.value},
         success: function(res) {
             $("#cidade_id").empty();
             $('#cidade_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
             $.each( res, function(a, b) {
-                $('#cidade_id').append($('<option>', {value: b['id'], text: b['name']}));
+                $('#cidade_id').append($('<option>', {value: b['id'], text: b['nome']}));
 
             });
         },
@@ -111,7 +114,17 @@ function changeCity(response) {
             console.log('error');
         },
     });
-}
+    }
+
+    function maiuscula(z){
+        v = z.value.toUpperCase();
+        z.value = v;
+    }
+
+    $(document).ready(function($){
+        $('#cnpj').mask('99.999.999/9999-99');
+   });
+
 </script>
 
 @endsection('content')
