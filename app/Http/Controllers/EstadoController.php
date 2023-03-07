@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cidade;
 use App\Models\Estado;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class EstadoController extends Controller
         $estados=Estado::all();
         dd($estados);
 
-        
+
     }
 
     /**
@@ -85,4 +86,5 @@ class EstadoController extends Controller
     {
         //
     }
+
 }

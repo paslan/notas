@@ -20,21 +20,21 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<table class="table table-bordered">
+		<table class="table table-bordered table-sm">
 			<tr>
-				<th>Id</th>
-				<th>Nome</th>
-				<th>Razao Social</th>
-				<th>CNPJ</th>
+				<th scope="col">Id</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Razao Social</th>
+				<th scope="col">CNPJ</th>
 			</tr>
 			@if(count($data) > 0)
 
 				@foreach($data as $row)
 
 					<tr>
-						<td>{{ $row->id }}</td>
-						<td>{{ $row->nome }}</td>
-						<td>{{ $row->razao_social }}</td>
+						<td scope="row">{{ $row->id }}</td>
+						<td style="width:10%">{{ $row->nome }}</td>
+						<td style="width:50%">{{ $row->razao_social }}</td>
 						<td>{{ $row->cnpj }}</td>
 						<td>
 							<form method="post" action="{{ route('empresas.destroy', $row->id) }}">

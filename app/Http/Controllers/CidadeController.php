@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cidade;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class CidadeController extends Controller
@@ -89,17 +90,10 @@ class CidadeController extends Controller
         return $cidades;
     }
 
-    public function loadCidades(Request $request)
-    {
-        $dataForm = $request->all();
-        $estado_id = $dataForm['estado_id'];
-        $cidades = Cidade::all()->where('estado_id', '=', $estado_id);
-        return view('cidade_ajax', ['cidades' => $cidades]);
-    }
-
     public function encontraCidades(Request $request){
         $cidades = Cidade::all();
         return $cidades->where('estado_id', '=', $request['estado_id']);
     }
+
 
 }

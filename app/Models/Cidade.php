@@ -16,9 +16,4 @@ class Cidade extends Model
         'estado_id',
     ];
 
-    public function Estado()
-    {
-        return $this->belongsTo(Estado::class, 'estado_id');
-    }
-
 }

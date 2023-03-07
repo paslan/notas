@@ -16,7 +16,4 @@ class Estado extends Model
         'abrev'
     ];
 
-    public function Cidades(){
-        return $this->hasMany(Cidade::class, 'id');
-    }
 }

@@ -18,4 +18,5 @@ class Empresa extends Model
         'uf',
         'cidade',
     ];
+
 }
