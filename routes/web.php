@@ -5,6 +5,8 @@ use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
+use App\Http\Controllers\ContatosController;
+use App\Http\Controllers\NotasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
 
 #Route::get('load_cidades', 'CidadeController@loadCidades')->name('load_cidades');
 

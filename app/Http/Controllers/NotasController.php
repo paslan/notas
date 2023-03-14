@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notasfiscais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PropostaController extends Controller
+class NotasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('propostas')->paginate();
 
-        return view('./propostas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $data = DB::table('notasfiscais')
+        ->where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderby('nronf')
+        ->paginate();
 
+        return view('./notas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 

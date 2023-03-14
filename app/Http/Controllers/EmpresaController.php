@@ -18,9 +18,11 @@ class EmpresaController extends Controller
 
      public function index(Request $request)
     {
+        //dd($request->campo);
+
 
         $data = DB::table('empresas')
-        ->where('nome', 'LIKE', "%{$request->search}%")
+        ->where($request->campo == null ? 'nome' :  $request->campo, 'LIKE', "%{$request->search}%")
         ->orderby('nome')
         ->paginate();
 
@@ -150,6 +152,13 @@ class EmpresaController extends Controller
 
     }
 
+    public function notas ($id)
+    {
+        $empresa = Empresa::find($id);
+        return view('notas/index',[
+            'empresa' => $empresa,
+        ]);
+    }
 
 
 }

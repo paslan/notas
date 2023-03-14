@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PropostaController extends Controller
+class ContatosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class PropostaController extends Controller
      */
     public function index()
     {
-        $data = DB::table('propostas')->paginate();
+        $data = DB::table('contatos')->paginate();
 
-        return view('./propostas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
-
+        return view('./contatos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 

@@ -13,20 +13,15 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>Empresas</b></div>
+			<div class="col col-md-6"><b>Contatos</b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('empresas.create') }}" class="btn btn-success btn-sm float-end">Add</a>
+				<a href="{{ route('contatos.create') }}" class="btn btn-success btn-sm float-end">Add</a>
 			</div>
 		</div>
 	</div>
     <div>
-        <form action="{{ route('empresas.index') }}" method="get">
+        <form action="{{ route('contatos.index') }}" method="get">
             <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <select name="campo" id="campo">
-                <option value="nome">Nome</option>
-                <option value="razao_social">Razão Social</option>
-                <option value="CNPJ">CNPJ</option>
-              </select>
             <button class="btn btn-info">Pesquisar</button>
         </form>
     </div>
@@ -34,9 +29,9 @@
 		<table class="table table-bordered table-sm">
 			<tr>
 				<th scope="col">Id</th>
-				<th scope="col">Nome</th>
-				<th scope="col">Razao Social</th>
-				<th scope="col">CNPJ</th>
+				<th scope="col">Empresa</th>
+				<th scope="col">Objeto</th>
+				<th scope="col">Descricao</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -44,16 +39,15 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->nome }}</td>
-						<td style="width:50%">{{ $row->razao_social }}</td>
-						<td>{{ $row->cnpj }}</td>
+						<td style="width:10%">{{ $row->empresa_id }}</td>
+						<td style="width:50%">{{ $row->objeto }}</td>
+						<td>{{ $row->descricao }}</td>
 						<td>
-							<form method="post" action="{{ route('empresas.destroy', $row->id) }}">
+							<form method="post" action="{{ route('contatos.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('empresas.show', $row->id) }}" class="btn btn-primary btn-sm">View</a>
-								<a href="{{ route('empresas.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
-								<a href="{{ route('empresas.notas', $row->id) }}" class="btn btn-info btn-sm">NF</a>
+								<a href="{{ route('contatos.show', $row->id) }}" class="btn btn-primary btn-sm">View</a>
+								<a href="{{ route('contatos.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
 								<input type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>
