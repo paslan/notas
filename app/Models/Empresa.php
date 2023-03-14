@@ -20,4 +20,8 @@ class Empresa extends Model
         'cidade',
     ];
 
+    public function contratos()
+    {
+        return $this->hasMany(Contrato::class);
+    }
 }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 
 class ContratoController extends Controller
 {
@@ -13,7 +17,10 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::table('contratos')->paginate();
+
+        return view('./contratos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     /**
@@ -23,7 +30,10 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        //
+        $empresas = Empresa::orderBy('nome')->get();
+        return view('./contratos/create', [
+            'empresas' => $empresas,
+        ]);
     }
 
     /**
@@ -34,7 +44,25 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'objeto'        => 'required',
+            'descricao'     => 'required',
+        ]);
+
+        //dd($request -> assinado);
+
+        $contrato = Contrato::create([
+            'empresa_id'       => $request -> empresa_id,
+            'objeto'           => $request -> objeto,
+            'descricao'        => $request -> descricao,
+            'data_assinatura'  => $request->dt_assinatura,
+            'assinado'         => $request->assinado,
+            'inicio_vigencia'  => $request->inicio_vigencia,
+            'fim_vigencia'     => $request->fim_vigencia,
+            'valor'            => $request->valor,
+        ]);
+
+        return redirect()->route('contratos.index')->with('success', 'Contrato adicionado com sucesso.');
     }
 
     /**
@@ -43,9 +71,14 @@ class ContratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contrato $contrato)
     {
-        //
+        //dd($contrato);
+        $empresa = Empresa::find($contrato->empresa_id);
+        return view('./contratos/show', [
+            'contrato' => $contrato,
+            'empresa'  => $empresa,
+        ]);
     }
 
     /**
@@ -56,7 +89,14 @@ class ContratoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contrato = Contrato::find($id);
+        //dd($contrato);
+        $empresas = Empresa::all();
+        return view('./contratos/edit', [
+            'contrato'  => $contrato,
+            'empresas'  => $empresas,
+        ]);
+
     }
 
     /**

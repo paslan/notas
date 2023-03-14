@@ -9,8 +9,20 @@ class Contrato extends Model
 {
     use HasFactory;
 
-    public function contratos()
+    protected $fillable = [
+        'objeto',
+        'descricao',
+        'data_assinatura',
+        'assinado',
+        'inicio_vigencia',
+        'fim_vigencia',
+        'valor',
+        'empresa_id',
+    ];
+
+
+    public function empresa()
     {
-        return $this->hasMany(Contrato::class);
+        return $this->belongsTo(Empresa::class);
     }
 }

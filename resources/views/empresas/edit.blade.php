@@ -29,7 +29,7 @@
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">CNPJ</label>
 				<div class="col-sm-10">
-					<input type="text" name="cnpj" class="form-control" value="{{ $empresa->cnpj }}" />
+					<input type="text" name="cnpj" id="cnpj" class="form-control" value="{{ $empresa->cnpj }}" />
 				</div>
 			</div>
 			<div class="row mb-3">

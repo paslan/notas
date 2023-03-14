@@ -21,51 +21,50 @@
 	<div class="card-body">
 		<form name="empresaform" id="empresaform" method="post" action="{{ route('empresas.store') }}">
 			@csrf
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Nome</label>
-				<div class="col-sm-10">
-					<input type="text" name="nome" class="form-control" />
+			<div class="row mb-2">
+				<label class="col-sm-12 col-label-form">Nome</label>
+				<div class="col-sm-12">
+					<input type="text" name="nome" class="form-control" placeholder="Nome" />
 				</div>
 			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Razao Social</label>
-				<div class="col-sm-10">
-					<input type="text" name="razao_social" onkeyup="maiuscula(this)" class="form-control" />
+			<div class="row mb-2">
+				<label class="col-sm-12 col-label-form">Razao Social</label>
+				<div class="col-sm-12">
+					<input type="text" name="razao_social" onkeyup="maiuscula(this)" class="form-control" placeholder="Razão Social"/>
 				</div>
 			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">CNPJ</label>
-				<div class="col-sm-10">
-					<input type="text" name="cnpj" id="cnpj" class="form-control" />
+			<div class="row mb-2">
+				<label class="col-sm-12 col-label-form">CNPJ</label>
+				<div class="col-sm-6">
+					<input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="CNPJ"/>
 				</div>
 			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Endereco</label>
-				<div class="col-sm-10">
-					<input type="text" name="endereco" class="form-control" />
+			<div class="row mb-2">
+				<label class="col-sm-9 col-label-form">Endereco</label>
+				<label class="col-sm-3 col-label-form">Nro</label>
+				<div class="col-sm-9">
+					<input type="text" name="endereco" class="form-control" placeholder="Endereço" />
+				</div>
+				<div class="col-sm-1">
+					<input type="text" name="nro" class="form-control" placeholder="Nro" />
 				</div>
 			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Nro</label>
-				<div class="col-sm-10">
-					<input type="text" name="nro" class="form-control" />
+			<div class="row mb-2">
+				<label class="col-sm-9 col-label-form">Complemento</label>
+				<label class="col-sm-3 col-label-form">Bairro</label>
+				<div class="col-sm-9">
+					<input type="text" name="complemento" class="form-control" placeholder="Complemento" />
+				</div>
+				<div class="col-sm-3">
+					<input type="text" name="bairro" class="form-control" placeholder="Bairro" />
 				</div>
 			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Complemento</label>
-				<div class="col-sm-10">
-					<input type="text" name="complemento" class="form-control" />
-				</div>
-			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Bairro</label>
-				<div class="col-sm-10">
-					<input type="text" name="bairro" class="form-control" />
-				</div>
-			</div>
-			<div class="row mb-3">
+			<div class="row mb-2">
 				<label class="col-sm-2 col-label-form">UF</label>
-				<div class="col-sm-10">
+				<label class="col-sm-2 col-label-form">Cidade</label>
+			</div>
+			<div class="row mb-2">
+				<div class="col-sm-2">
                     <select class="form-control" data-url="{{ url('encontrar-cidades') }}" data-token="{{ csrf_token() }}" onchange="changeCity(this)" name="estado_id" id="estado_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($estados as $estado)
@@ -73,10 +72,7 @@
                         @endforeach
                     </select>
 				</div>
-			</div>
-			<div class="row mb-3">
-				<label class="col-sm-2 col-label-form">Cidade</label>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
                     <select class="form-control" name="cidade_id" id="cidade_id">
                         <option value="" selected>Selecione...</option>
                     </select>

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('teste');
+    return view('index');
 });
 
 
@@ -37,3 +37,7 @@ Route::resource('empresas', EmpresaController::class);
 Route::resource('contratos', ContratoController::class);
 
 Route::resource('propostas', PropostaController::class);
+
+Route::resource('contatos', ContatosController::class);
+
+Route::resource('notas', NotasController::class);

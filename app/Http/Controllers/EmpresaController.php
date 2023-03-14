@@ -6,6 +6,7 @@ use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Estado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
@@ -15,9 +16,14 @@ class EmpresaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index()
+     public function index(Request $request)
     {
-        $data = Empresa::latest()->paginate(5);
+
+        $data = DB::table('empresas')
+        ->where('nome', 'LIKE', "%{$request->search}%")
+        ->orderby('nome')
+        ->paginate();
+
 
         return view('./empresas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -73,9 +79,14 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Empresa $empresa)
     {
-        $empresa = Empresa::find($id);
+        //$empresa->contratos()->create([
+        //   'objeto' => 'Objeto 1',
+        //   'descricao' => 'Desccrição 1',
+        //
+        //]);
+
         $cidade = Cidade::find($empresa->cidade_id);
         $estado = Estado::find($empresa->estado_id);
         return view('./empresas/show', [
