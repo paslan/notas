@@ -21,9 +21,8 @@
         <div class="row">
             <div class="col col-md-6"><b>Edit Contratos</b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('contratos.index') }}" class="btn btn-primary btn-sm float-end">View All</a>
+				<a href="{{ route('contratos.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>
-
         </div>
     </div>
 	<div class="card-body">
@@ -89,7 +88,7 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary" value="Save" />
+				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>
 
             <div class="result"></div>

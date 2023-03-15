@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col col-md-6"><b>Contrato Details</b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('contratos.index') }}" class="btn btn-primary btn-sm float-end">View All</a>
+				<a href="{{ route('contratos.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>
 		</div>
 	</div>

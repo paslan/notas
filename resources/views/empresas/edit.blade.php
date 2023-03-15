@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col col-md-6"><b>Empresa Edit</b></div>
         <div class="col col-md-6">
-            <a href="{{ route('empresas.index') }}" class="btn btn-primary btn-sm float-end">View All</a>
+            <a href="{{ route('empresas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
 			</div>
 			<div class="text-center">
 				<input type="hidden" name="hidden_id" value="{{ $empresa->id }}" />
-				<input type="submit" class="btn btn-primary" value="Save" />
+				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>
 		</form>
 	</div>

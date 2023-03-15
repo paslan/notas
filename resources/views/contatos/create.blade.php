@@ -17,7 +17,14 @@
 @endif
 
 <div class="card">
-	<div class="card-header">Add Contato</div>
+	<div class="card-header">
+        <div class="row">
+            <div class="col col-md-6"><b>Add Contatos</b></div>
+			<div class="col col-md-6">
+				<a href="{{ route('contatos.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
+			</div>
+        </div>
+    </div>
 	<div class="card-body">
 		<form name="contatoform" id="contatoform" method="post" action="{{ route('contatos.store') }}">
 			@csrf
@@ -63,7 +70,7 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary" value="Add" />
+				<input type="submit" class="btn btn-outline-primary" value="Add" />
 			</div>
 
             <div class="result"></div>

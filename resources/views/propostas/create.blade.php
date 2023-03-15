@@ -19,25 +19,31 @@
 <div class="card">
 	<div class="card-header">
         <div class="row">
-            <div class="col col-md-6"><b>Add Contratos</b></div>
+            <div class="col col-md-6"><b>Add Propostas</b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('contratos.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
+				<a href="{{ route('propostas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>
         </div>
     </div>
 	<div class="card-body">
-		<form name="contratoform" id="contratoform" method="post" action="{{ route('contratos.store') }}">
+		<form name="propostaform" id="propostaform" method="post" action="{{ route('propostas.store') }}">
 			@csrf
 			<div class="row mb-2">
-				<label class="col-12 col-label-form">Empresa</label>
-				<div class="col-sm-12">
-                    <select name="empresa_id" id="empresa_id">
-                        <option value="">Selecione...</option>
+				<label class="col-2 col-label-form">Empresa</label>
+				<label class="col-10 col-label-form">Contrato</label>
+				<div class="col-sm-2">
+                    <select class="form-control" data-url="{{ url('encontrar-contratos') }}" data-token="{{ csrf_token() }}" onchange="changeContrato(this)" name="empresa_id" id="empresa_id">
+                        <option value="" selected>Selecione...</option>
                         @foreach($empresas as $empresa)
                             <option value="{{ $empresa['id'] }}" @if(old('empresa_id') == $empresa['id']) {{ 'selected' }} @endif>{{ $empresa['nome'] }}</option>
                         @endforeach
                     </select>
 				</div>
+                <div class="col-sm-6">
+                    <select class="form-control" name="contrato_id" id="contrato_id">
+                        <option value="" selected>Selecione...</option>
+                    </select>
+                </div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Objeto</label>
@@ -92,6 +98,39 @@
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
         integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
+
+        <script>
+            function changeContrato(response) {
+                //alert(response.value);
+            $.ajax({
+                url: $(response).data('url'),
+                type: 'post',
+                data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
+                success: function(res) {
+                    $("#contrato_id").empty();
+                    $('#contrato_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                    $.each( res, function(a, b) {
+                        $('#contrato_id').append($('<option>', {value: b['id'], text: b['objeto']}));
+
+                    });
+                },
+                error: function(){
+                    console.log('error');
+                },
+            });
+            }
+
+            function maiuscula(z){
+                v = z.value.toUpperCase();
+                z.value = v;
+            }
+
+            $(document).ready(function($){
+                $('#cnpj').mask('99.999.999/9999-99');
+           });
+
+        </script>
+
 
 @endsection('content')
 

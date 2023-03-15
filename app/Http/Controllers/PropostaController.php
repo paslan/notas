@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +30,11 @@ class PropostaController extends Controller
      */
     public function create()
     {
-        //
+        $empresas = Empresa::orderBy('nome')->get();
+        return view('./propostas/create', [
+            'empresas' => $empresas,
+        ]);
+
     }
 
     /**

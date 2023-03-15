@@ -31,6 +31,9 @@ Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('em
 
 Route::post('encontrar-cidades', [CidadeController::class, 'encontraCidades']);
 
+Route::post('encontrar-contratos', [ContratoController::class, 'encontraContratos']);
+
+
 Route::resource('estados', EstadoController::class);
 
 Route::resource('cidades', CidadeController::class);

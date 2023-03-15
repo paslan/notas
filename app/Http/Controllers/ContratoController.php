@@ -45,6 +45,7 @@ class ContratoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'empresa_id'    => 'required',
             'objeto'        => 'required',
             'descricao'     => 'required',
         ]);
@@ -121,4 +122,10 @@ class ContratoController extends Controller
     {
         //
     }
+
+    public function encontraContratos(Request $request){
+        $contratos = Contrato::all();
+        return $contratos->where('empresa_id', '=', $request['empresa_id']);
+    }
+
 }
