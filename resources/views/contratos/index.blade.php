@@ -23,7 +23,7 @@
     <div>
         <form action="{{ route('contratos.index') }}" method="get">
             <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <button class="btn btn-outline-info">Pesquisar</button>
+            <button class="btn btn-outline-info btn-sm">Pesquisar</button>
         </form>
     </div>
 	<div class="card-body">
