@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contato;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 
 class ContatosController extends Controller
 {
@@ -27,7 +31,11 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        //
+        $empresas = Empresa::orderBy('nome')->get();
+        return view('./contatos/create', [
+            'empresas' => $empresas,
+        ]);
+
     }
 
     /**
@@ -38,7 +46,24 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'objeto'        => 'required',
+            'descricao'     => 'required',
+        ]);
+
+        //dd($request -> assinado);
+
+        $contrato = Contato::create([
+            'empresa_id' => $request -> empresa_id,
+            'nome'       => $request -> nome,
+            'email1'     => $request -> email1,
+            'email2'     => $request->email2,
+            'telefone1'  => $request->telefone1,
+            'telefone2'  => $request->telefone2,
+        ]);
+
+        return redirect()->route('contatos.index')->with('success', 'Contato adicionado com sucesso.');
+
     }
 
     /**

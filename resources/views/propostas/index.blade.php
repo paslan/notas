@@ -13,16 +13,17 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>Propostas</b></div>
-			<div class="col col-md-6">
-				<a href="{{ route('propostas.create') }}" class="btn btn-success btn-sm float-end">Add</a>
+			<div class="col col-md-10"><b>Propostas</b></div>
+			<div class="col col-md-2">
+				<a href="{{ route('propostas.create') }}" class="btn btn-outline-success btn-sm">Add</a>
+                <a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>
 			</div>
 		</div>
 	</div>
     <div>
         <form action="{{ route('propostas.index') }}" method="get">
             <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <button class="btn btn-info">Pesquisar</button>
+            <button class="btn btn-outline-info">Pesquisar</button>
         </form>
     </div>
 	<div class="card-body">
@@ -46,9 +47,9 @@
 							<form method="post" action="{{ route('propostas.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('propostas.show', $row->id) }}" class="btn btn-primary btn-sm">View</a>
-								<a href="{{ route('propostas.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
-								<input type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
+								<a href="{{ route('propostas.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
+								<a href="{{ route('propostas.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
+								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>
 					</tr>
