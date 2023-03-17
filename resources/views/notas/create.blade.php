@@ -19,14 +19,14 @@
 <div class="card">
 	<div class="card-header">
         <div class="row">
-            <div class="col col-md-6"><b>Add Propostas</b></div>
+            <div class="col col-md-6"><b>Add Notas Fiscais</b></div>
 			<div class="col col-md-6">
-				<a href="{{ route('propostas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
+				<a href="{{ route('notas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>
         </div>
     </div>
 	<div class="card-body">
-		<form name="propostaform" id="propostaform" method="post" action="{{ route('propostas.store') }}">
+		<form name="notasform" id="notasform" method="post" action="{{ route('notas.store') }}">
 			@csrf
 			<div class="row mb-2">
 				<label class="col-2 col-label-form">Empresa</label>
@@ -46,43 +46,18 @@
                 </div>
 			</div>
 			<div class="row mb-2">
-				<label class="col-12 col-label-form">Objeto</label>
-				<div class="col-sm-12">
-					<textarea type="text" name="objeto" class="form-control" placeholder="Objeto"></textarea>
-				</div>
-			</div>
-			<div class="row mb-2">
-				<label class="col-12 col-label-form">Descrição</label>
-				<div class="col-sm-12">
-                    <input type="text" name="descricao" id="descricao" class="form-control" placeholder="Descrição">
-				</div>
-			</div>
-			<div class="row mb-2">
-				<label class="col-sm-2 col-label-form">Data Assinatura</label>
-                <label class="col-sm-2" for="assinadoCheck">Assinado</label>
-				<label class="col-sm-2 col-label-form">Inicio Vigência</label>
-				<label class="col-sm-2 col-label-form">Fim Vigência</label>
-				<label class="col-sm-2 col-label-form">Valor</label>
-				<label class="col-sm-2 col-label-form">Ultimo TA</label>
-			</div>
-			<div class="row mb-3">
+				<label class="col-sm-2 col-label-form">Nro. NF</label>
+				<label class="col-sm-2 col-label-form">Emissão</label>
+				<label class="col-sm-2 col-label-form">Vencto</label>
+                <div class="row"></div>
 				<div class="col-sm-2">
-					<input type="date" name="dt_assinatura" class="form-control" />
+                    <input type="text" name="nronf" id="nronf" class="form-control" placeholder="nro NF">
+				</div>
+				<div class="col-sm-2">
+					<input type="date" name="data_emissao" class="form-control" />
 				</div>
                 <div class="col-sm-2">
-                    <input type="checkbox" class="form-check-input" name="assinado" value="1" id="assinadoCheck">
-                  </div>
-                    <div class="col-sm-2">
-					<input type="date" name="inicio_vigencia" class="form-control" />
-				</div>
-				<div class="col-sm-2">
-					<input type="date" name="fim_vigencia" class="form-control" />
-				</div>
-				<div class="col-sm-2">
-					<input type="text" name="valor" class="form-control" placeholder="Valor" />
-				</div>
-				<div class="col-sm-1">
-					<input type="text" name="ultimo_ta" class="form-control" />
+					<input type="date" name="data_vencto" class="form-control" />
 				</div>
 			</div>
 			<div class="text-center">
@@ -119,15 +94,6 @@
                 },
             });
             }
-
-            function maiuscula(z){
-                v = z.value.toUpperCase();
-                z.value = v;
-            }
-
-            $(document).ready(function($){
-                $('#cnpj').mask('99.999.999/9999-99');
-           });
 
         </script>
 

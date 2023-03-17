@@ -18,6 +18,7 @@ class Proposta extends Model
         'fim_vigencia',
         'valor',
         'contrato_id',
+        'empresa_id',
     ];
 
 

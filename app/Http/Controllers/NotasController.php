@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use App\Models\Notasfiscais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,12 @@ class NotasController extends Controller
      */
     public function create()
     {
-        //
+
+        $empresas = Empresa::orderBy('nome')->get();
+        return view('./notas/create', [
+            'empresas' => $empresas,
+        ]);
+
     }
 
     /**
@@ -43,7 +49,26 @@ class NotasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'empresa_id'    => 'required',
+            'contrato_id'   => 'required',
+            'nronf'         => 'required',
+            'data_emissao'  => 'required',
+            'data_vencto'   => 'required',
+        ]);
+
+        //dd($request -> assinado);
+
+        $contrato = Notasfiscais::create([
+            'empresa_id'       => $request -> empresa_id,
+            'contrato_id'      => $request -> contrato_id,
+            'nronf'            => $request -> nronf,
+            'data_emissao'     => $request -> data_emissao,
+            'data_vencto'      => $request -> data_vencto,
+        ]);
+
+        return redirect()->route('notas.index')->with('success', 'Nota Fiscal adicionada com sucesso.');
+
     }
 
     /**

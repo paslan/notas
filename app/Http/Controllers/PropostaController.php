@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contrato;
 use App\Models\Empresa;
+use App\Models\Proposta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,7 +46,30 @@ class PropostaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'objeto'           => 'required',
+            'descricao'        => 'required',
+            'empresa_id'       => 'required',
+            'contrato_id'      => 'required',
+            'inicio_vigencia'  => 'required',
+            'fim_vigencia'     => 'required',
+        ]);
+
+
+        $proposta = Proposta::create([
+            'objeto'           => $request -> objeto,
+            'descricao'        => $request -> descricao,
+            'contrato_id'      => $request -> contrato_id,
+            'empresa_id'       => $request -> empresa_id,
+            'data_assinatura'  => $request -> dt_assinatura,
+            'assinado'         => $request -> assinado,
+            'inicio_vigencia'  => $request -> inicio_vigencia,
+            'fim_vigencia'     => $request -> fim_vigencia,
+            'valor'            => $request -> valor,
+        ]);
+
+        return redirect()->route('propostas.index')->with('success', 'Proposta adicionada com sucesso.');
+
     }
 
     /**
@@ -54,9 +78,16 @@ class PropostaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Proposta $proposta)
     {
-        //
+        $empresa = Empresa::find($proposta->empresa_id);
+        $contrato = Contrato::find($proposta->contrato_id);
+        return view('./propostas/show', [
+            'proposta' => $proposta,
+            'contrato' => $contrato,
+            'empresa'  => $empresa,
+        ]);
+
     }
 
     /**
@@ -67,7 +98,15 @@ class PropostaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proposta  = Proposta::find($id);
+        $empresas = Empresa::all();
+        $contratos = Contrato::with('empresa')->get();
+        return view('./propostas/edit', [
+            'proposta'   => $proposta,
+            'contratos'  => $contratos,
+            'empresas'   => $empresas,
+        ]);
+
     }
 
     /**

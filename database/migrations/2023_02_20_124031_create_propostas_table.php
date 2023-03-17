@@ -18,17 +18,15 @@ return new class extends Migration
 
             $table->longText('objeto');
             $table->string('descricao',255);
-            $table->foreignId('contrato_id')
-                  ->constrained()
-                  ->onDelete('CASCADE')
-                  ->onUpdate('CASCADE');
+            $table->foreignId('contrato_id')->constrained();
+            $table->foreignId('empresa_id')->constrained();
 
-            $table->boolean('assinado');
-            $table->date('data_assinatura');
+            $table->boolean('assinado')->nullable();
+            $table->date('data_assinatura')->nullable();
             $table->date('inicio_vigencia');
             $table->date('fim_vigencia');
-            $table->double('valor', 8, 2);
-            $table->tinyInteger('ultimo_ta');
+            $table->double('valor', 8, 2)->nullable();
+            $table->tinyInteger('ultimo_ta')->nullable();
 
             $table->timestamps();
 

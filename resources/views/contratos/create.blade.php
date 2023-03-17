@@ -48,7 +48,7 @@
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Descrição</label>
 				<div class="col-sm-12">
-					<textarea type="text" name="descricao" class="form-control" placeholder="Descrição"></textarea>
+                    <input type="text" name="descricao" id="decricao" class="form-control" placeholder="Descrição">
 				</div>
 			</div>
 			<div class="row mb-2">

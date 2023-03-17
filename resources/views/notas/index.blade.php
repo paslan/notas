@@ -40,7 +40,7 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->notas_id }}</td>
+						<td style="width:10%">{{ $row->empresa_id }}</td>
 						<td style="width:50%">{{ $row->contrato_id }}</td>
 						<td>{{ $row->nronf }}</td>
 						<td>
