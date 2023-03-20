@@ -29,19 +29,22 @@
 		<form name="contratoform" id="contratoform" method="post" action="{{ route('contratos.store') }}">
 			@csrf
 			<div class="row mb-2">
-				<label class="col-12 col-label-form">Empresa</label>
-
-				<div class="col-sm-12">
-                    <select name="empresa_id" id="empresa_id">
-                        <option value="">Selecione...</option>
-                        @foreach($empresas as $empresa)
-                            <option value="{{ $empresa['id'] }}" @if ($empresa['id'] == $contrato['empresa_id'])
-                                selected
-                            @endif>
-                            {{ $empresa['nome'] }}</option>
-                        @endforeach
-                    </select>
-				</div>
+                <div class="row">
+                    <label class="col-12 col-label-form">Empresa</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <select class="form-select" name="empresa_id" id="empresa_id">
+                            <option value="">Selecione...</option>
+                            @foreach($empresas as $empresa)
+                                <option value="{{ $empresa['id'] }}" @if ($empresa['id'] == $contrato['empresa_id'])
+                                    selected
+                                @endif>
+                                {{ $empresa['nome'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Objeto</label>

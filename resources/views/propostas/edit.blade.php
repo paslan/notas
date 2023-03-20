@@ -29,11 +29,11 @@
 		<form name="propostaform" id="propostaform" method="post" action="{{ route('propostas.store') }}">
 			@csrf
 			<div class="row mb-2">
-				<label class="col-12 col-label-form">Empresa</label>
-				<label class="col-12 col-label-form">Contrato</label>
+				<label class="col-2 col-label-form">Empresa</label>
+				<label class="col-10 col-label-form">Contrato</label>
 
-				<div class="col-sm-6">
-                    <select name="empresa_id" id="empresa_id">
+				<div class="col-sm-2">
+                    <select class="form-select" data-url="{{ url('encontrar-contratos') }}" data-token="{{ csrf_token() }}" onchange="changeContrato(this)" name="empresa_id" id="empresa_id">
                         <option value="">Selecione...</option>
                         @foreach($empresas as $empresa)
                             <option value="{{ $empresa['id'] }}" @if ($empresa['id'] == $proposta['empresa_id'])
@@ -44,7 +44,7 @@
                     </select>
 				</div>
 				<div class="col-sm-6">
-                    <select name="contrato_id" id="contrato_id">
+                    <select class="form-select" name="contrato_id" id="contrato_id">
                         <option value="">Selecione...</option>
                         @foreach($contratos as $contrato)
                             <option value="{{ $contrato['id'] }}" @if ($contrato['id'] == $proposta['contrato_id'])
@@ -112,6 +112,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
         integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
+
+        <script>
+            function changeContrato(response) {
+                //alert(response.value);
+            $.ajax({
+                url: $(response).data('url'),
+                type: 'post',
+                data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
+                success: function(res) {
+                    $("#contrato_id").empty();
+                    $('#contrato_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                    $.each( res, function(a, b) {
+                        $('#contrato_id').append($('<option>', {value: b['id'], text: b['objeto']}));
+
+                    });
+                },
+                error: function(){
+                    console.log('error');
+                },
+            });
+            }
+
+        </script>
 
 @endsection('content')
 

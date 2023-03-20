@@ -100,7 +100,9 @@ class PropostaController extends Controller
     {
         $proposta  = Proposta::find($id);
         $empresas = Empresa::all();
-        $contratos = Contrato::with('empresa')->get();
+        //$contratos = Contrato::with('empresa')->get();
+        $contratos = Contrato::where('empresa_id', $proposta->empresa_id)->get();
+        //dd($contratos);
         return view('./propostas/edit', [
             'proposta'   => $proposta,
             'contratos'  => $contratos,

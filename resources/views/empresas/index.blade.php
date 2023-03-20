@@ -22,13 +22,21 @@
 	</div>
     <div>
         <form action="{{ route('empresas.index') }}" method="get">
-            <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <select name="campo" id="campo">
-                <option value="nome">Nome</option>
-                <option value="razao_social">Razão Social</option>
-                <option value="CNPJ">CNPJ</option>
-              </select>
-            <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="text" name="search" id="search" placeholder="Pesquisar">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-select" name="campo" id="campo">
+                        <option value="nome">Nome</option>
+                        <option value="razao_social">Razão Social</option>
+                        <option value="CNPJ">CNPJ</option>
+                    </select>
+                </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+                </div>
+            </div>
         </form>
     </div>
 	<div class="card-body">

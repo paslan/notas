@@ -68,7 +68,7 @@
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">UF</label>
 				<div class="col-sm-10">
-                    <select class="form-control" name="estado_id" id="estado_id">
+                    <select class="form-select" name="estado_id" id="estado_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($estados as $estado)
                             <option value="{{ $estado['id'] }}" @if(old('estado_id') == $estado['id']) {{ 'selected' }} @endif>{{ $estado['name'] }}</option>
@@ -79,7 +79,7 @@
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">Cidade</label>
 				<div class="col-sm-10">
-                    <select class="form-control" name="cidade_id" id="cidade_id">
+                    <select class="form-select" name="cidade_id" id="cidade_id">
                         <option value="" selected>Selecione...</option>
                     </select>
 				</div>

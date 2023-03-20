@@ -72,7 +72,7 @@
 			</div>
 			<div class="row mb-2">
 				<div class="col-sm-2">
-                    <select class="form-control" data-url="{{ url('encontrar-cidades') }}" data-token="{{ csrf_token() }}" onchange="changeCity(this)" name="estado_id" id="estado_id">
+                    <select class="form-select" data-url="{{ url('encontrar-cidades') }}" data-token="{{ csrf_token() }}" onchange="changeCity(this)" name="estado_id" id="estado_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($estados as $estado)
                             <option value="{{ $estado['id'] }}" @if(old('estado_id') == $estado['id']) {{ 'selected' }} @endif>{{ $estado['nome'] }}</option>
@@ -80,7 +80,7 @@
                     </select>
 				</div>
 				<div class="col-sm-8">
-                    <select class="form-control" name="cidade_id" id="cidade_id">
+                    <select class="form-select" name="cidade_id" id="cidade_id">
                         <option value="" selected>Selecione...</option>
                     </select>
 				</div>
