@@ -31,8 +31,9 @@
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">Empresa</th>
-				<th scope="col">Objeto</th>
-				<th scope="col">Descricao</th>
+				<th scope="col">Nome</th>
+				<th scope="col">e-mail1</th>
+				<th scope="col">Tel1</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -41,8 +42,9 @@
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
 						<td style="width:10%">{{ $row->empresa_id }}</td>
-						<td style="width:50%">{{ $row->objeto }}</td>
-						<td>{{ $row->descricao }}</td>
+						<td style="width:30%">{{ $row->nome }}</td>
+						<td>{{ $row->email1 }}</td>
+						<td>{{ $row->telefone1 }}</td>
 						<td>
 							<form method="post" action="{{ route('contatos.destroy', $row->id) }}">
 								@csrf
