@@ -33,6 +33,8 @@
 				<th scope="col">Empresa</th>
 				<th scope="col">Contrato</th>
 				<th scope="col">Nro NF</th>
+				<th scope="col">Emissão</th>
+				<th scope="col">Vencto</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -41,8 +43,10 @@
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
 						<td style="width:10%">{{ $row->empresa->nome }}</td>
-						<td style="width:50%">{{ $row->contrato_id }}</td>
+						<td style="width:10%">{{ $row->contrato_id }}</td>
 						<td>{{ $row->nronf }}</td>
+						<td>{{ $row->data_emissao }}</td>
+						<td>{{ $row->data_vencto }}</td>
 						<td>
 							<form method="post" action="{{ route('notas.destroy', $row->id) }}">
 								@csrf

@@ -33,7 +33,10 @@ class ContatoController extends Controller
      */
     public function create()
     {
-        return view('./contatos/create');
+        $empresas = Empresa::all();
+        return view('./contatos/create', [
+            'empresas' => $empresas,
+        ]);
 
     }
 
@@ -72,9 +75,15 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contato $contato)
     {
-        //
+                //dd($contato);
+                $empresa = Empresa::find($contato->empresa_id);
+                return view('./contatos/show', [
+                    'contato' => $contato,
+                    'empresa'  => $empresa,
+                ]);
+
     }
 
     /**
@@ -85,7 +94,14 @@ class ContatoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contato = Contato::find($id);
+        //dd($contato);
+        $empresas = Empresa::all();
+        return view('./contatos/edit', [
+            'contato'  => $contato,
+            'empresas'  => $empresas,
+        ]);
+
     }
 
     /**
