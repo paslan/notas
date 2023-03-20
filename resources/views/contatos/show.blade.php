@@ -14,7 +14,7 @@
 	<div class="card-body">
 
         <div class="row mb-2">
-            <label class="col-12 col-label-form">ID Contrato</label>
+            <label class="col-12 col-label-form">ID Contato</label>
             <div class="col-sm-12">{{$contato->id}}</div>
         </div>
         <div class="row mb-2">

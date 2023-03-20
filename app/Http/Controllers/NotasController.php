@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
 use Illuminate\Http\Request;
@@ -82,9 +83,17 @@ class NotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Notasfiscais $nota)
     {
-        //
+                //dd($notas);
+                $empresa = Empresa::find($nota->empresa_id);
+                $contrato = Contrato::find($nota->contrato_id);
+                return view('./notas/show', [
+                    'nota'      => $nota,
+                    'empresa'   => $empresa,
+                    'contrato'  => $contrato,
+                ]);
+
     }
 
     /**
@@ -95,7 +104,16 @@ class NotasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nota  = Notasfiscais::find($id);
+        $empresas = Empresa::all();
+        $contratos = Contrato::where('empresa_id', $nota->empresa_id)->get();
+        //dd($contratos);
+        return view('./notas/edit', [
+            'nota'       => $nota,
+            'contratos'  => $contratos,
+            'empresas'   => $empresas,
+        ]);
+
     }
 
     /**
