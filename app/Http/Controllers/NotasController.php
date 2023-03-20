@@ -17,10 +17,15 @@ class NotasController extends Controller
     public function index(Request $request)
     {
 
-        $data = DB::table('notasfiscais')
-        ->where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")
+        $data = Notasfiscais::where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
         ->orderby('nronf')
         ->paginate();
+
+
+        //$data = DB::table('notasfiscais')
+        //->where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")
+        //->orderby('nronf')
+        //->paginate();
 
         return view('./notas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Estado;
+use App\Models\Notasfiscais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -154,9 +155,11 @@ class EmpresaController extends Controller
 
     public function notas ($id)
     {
-        $empresa = Empresa::find($id);
+        $data = Notasfiscais::where('empresa_id', '=', $id)->with('empresa')
+        ->paginate();
+        //dd($data);
         return view('notas/index',[
-            'empresa' => $empresa,
+            'data' => $data
         ]);
     }
 

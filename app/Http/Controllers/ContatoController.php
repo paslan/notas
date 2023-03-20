@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Contato;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-
-
-class ContatosController extends Controller
+class ContatoController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('contatos')->paginate();
+        $data = Contato::where($request->campo == null ? 'nome' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
+        ->orderby('nome')
+        ->paginate();
+
+
+        //$data = Contato::all()->paginate();
 
         return view('./contatos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -31,10 +33,7 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        $empresas = Empresa::orderBy('nome')->get();
-        return view('./contatos/create', [
-            'empresas' => $empresas,
-        ]);
+        return view('./contatos/create');
 
     }
 
@@ -47,8 +46,9 @@ class ContatosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'objeto'        => 'required',
-            'descricao'     => 'required',
+            'empresa_id'   => 'required',
+            'nome'         => 'required',
+            'email1'       => 'required',
         ]);
 
         //dd($request -> assinado);
@@ -57,9 +57,9 @@ class ContatosController extends Controller
             'empresa_id' => $request -> empresa_id,
             'nome'       => $request -> nome,
             'email1'     => $request -> email1,
-            'email2'     => $request->email2,
-            'telefone1'  => $request->telefone1,
-            'telefone2'  => $request->telefone2,
+            'email2'     => $request -> email2,
+            'telefone1'  => $request -> telefone1,
+            'telefone2'  => $request -> telefone2,
         ]);
 
         return redirect()->route('contatos.index')->with('success', 'Contato adicionado com sucesso.');
@@ -110,4 +110,5 @@ class ContatosController extends Controller
     {
         //
     }
+
 }

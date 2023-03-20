@@ -5,7 +5,7 @@ use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
-use App\Http\Controllers\ContatosController;
+use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\NotasController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +44,6 @@ Route::resource('contratos', ContratoController::class);
 
 Route::resource('propostas', PropostaController::class);
 
-Route::resource('contatos', ContatosController::class);
+Route::resource('contatos', ContatoController::class);
 
 Route::resource('notas', NotasController::class);
