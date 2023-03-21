@@ -15,9 +15,16 @@ class PropostaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('propostas')->paginate();
+
+        $data = DB::table('propostas')
+                ->join('empresas', 'empresa_id', '=', 'empresas.id')
+                ->where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
+                ->orderBy('empresas.nome', 'asc')
+                ->paginate();
+
+        //dd($data);
 
         return view('./propostas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 
