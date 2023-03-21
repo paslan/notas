@@ -22,8 +22,21 @@
 	</div>
     <div>
         <form action="{{ route('contratos.index') }}" method="get">
-            <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="text" name="search" id="search" placeholder="Pesquisar">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-select" name="campo" id="campo">
+                        <option value="nome">Empresa</option>
+                        <option value="objeto">Objeto</option>
+                        <option value="descricao">Descricao</option>
+                    </select>
+                </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+                </div>
+            </div>
         </form>
     </div>
 	<div class="card-body">
@@ -40,7 +53,7 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->empresa_id }}</td>
+						<td style="width:10%">{{ $row->nome }}</td>
 						<td style="width:50%">{{ $row->objeto }}</td>
 						<td>{{ $row->descricao }}</td>
 						<td>
