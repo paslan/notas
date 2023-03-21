@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contato;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContatoController extends Controller
 {
@@ -15,12 +16,16 @@ class ContatoController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Contato::where($request->campo == null ? 'nome' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
-        ->orderby('nome')
+
+        $data = DB::table('contatos')
+        ->join('empresas', 'empresa_id', '=', 'empresas.id')
+        ->where($request->campo == null ? 'contatos.id' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderBy('empresas.nome', 'asc')
+        ->select('*')
+        ->selectRaw('contatos.id as id_contatos, contatos.nome as nome_contato, empresas.nome as nome_empresas, empresas.id as id_empresas ')
         ->paginate();
 
-
-        //$data = Contato::all()->paginate();
+        //dd($data);
 
         return view('./contatos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 

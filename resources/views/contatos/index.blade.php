@@ -22,8 +22,21 @@
 	</div>
     <div>
         <form action="{{ route('contatos.index') }}" method="get">
-            <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="text" name="search" id="search" placeholder="Pesquisar">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-select" name="campo" id="campo">
+                        <option value="empresas.nome">Empresa</option>
+                        <option value="contatos.nome">Nome</option>
+                        <option value="email1">E-mail1</option>
+                    </select>
+                </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+                </div>
+            </div>
         </form>
     </div>
 	<div class="card-body">
@@ -40,17 +53,17 @@
 				@foreach($data as $row)
 
 					<tr>
-						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->empresa_id }}</td>
-						<td style="width:30%">{{ $row->nome }}</td>
+						<td scope="row">{{ $row->id_contatos }}</td>
+						<td style="width:10%">{{ $row->nome_empresas }}</td>
+						<td style="width:30%">{{ $row->nome_contato }}</td>
 						<td>{{ $row->email1 }}</td>
 						<td>{{ $row->telefone1 }}</td>
 						<td>
-							<form method="post" action="{{ route('contatos.destroy', $row->id) }}">
+							<form method="post" action="{{ route('contatos.destroy', $row->id_contatos) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('contatos.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
-								<a href="{{ route('contatos.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
+								<a href="{{ route('contatos.show', $row->id_contatos) }}" class="btn btn-outline-primary btn-sm">View</a>
+								<a href="{{ route('contatos.edit', $row->id_contatos) }}" class="btn btn-outline-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>
