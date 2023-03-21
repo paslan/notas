@@ -45,8 +45,8 @@
 						<td style="width:10%">{{ $row->empresa->nome }}</td>
 						<td style="width:10%">{{ $row->contrato_id }}</td>
 						<td>{{ $row->nronf }}</td>
-						<td>{{ $row->data_emissao }}</td>
-						<td>{{ $row->data_vencto }}</td>
+						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
+						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>
 						<td>
 							<form method="post" action="{{ route('notas.destroy', $row->id) }}">
 								@csrf
