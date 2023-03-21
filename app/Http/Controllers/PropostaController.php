@@ -19,10 +19,19 @@ class PropostaController extends Controller
     {
 
         $data = DB::table('propostas')
-                ->join('empresas', 'empresa_id', '=', 'empresas.id')
-                ->where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-                ->orderBy('empresas.nome', 'asc')
-                ->paginate();
+        ->join('empresas', 'empresa_id', '=', 'empresas.id')
+        ->where($request->campo == null ? 'propostas.id' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderBy('empresas.nome', 'asc')
+        ->select('*')
+        ->selectRaw('propostas.id as id_propostas, empresas.id as id_empresas ')
+        ->paginate();
+
+
+        //$data = DB::table('propostas')
+        //        ->join('empresas', 'empresa_id', '=', 'empresas.id')
+        //        ->where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
+        //        ->orderBy('empresas.nome', 'asc')
+        //        ->paginate();
 
         //dd($data);
 
@@ -87,6 +96,7 @@ class PropostaController extends Controller
      */
     public function show(Proposta $proposta)
     {
+        //dd($proposta);
         $empresa = Empresa::find($proposta->empresa_id);
         $contrato = Contrato::find($proposta->contrato_id);
         return view('./propostas/show', [

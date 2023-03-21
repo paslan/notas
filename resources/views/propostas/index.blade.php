@@ -52,16 +52,16 @@
 				@foreach($data as $row)
 
 					<tr>
-						<td scope="row">{{ $row->id }}</td>
+						<td scope="row">{{ $row->id_propostas }}</td>
 						<td style="width:10%">{{ $row->nome }}</td>
 						<td style="width:50%">{{ $row->objeto }}</td>
 						<td>{{ $row->descricao }}</td>
 						<td>
-							<form method="post" action="{{ route('propostas.destroy', $row->id) }}">
+							<form method="post" action="{{ route('propostas.destroy', $row->id_propostas) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('propostas.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
-								<a href="{{ route('propostas.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
+								<a href="{{ route('propostas.show', $row->id_propostas) }}" class="btn btn-outline-primary btn-sm">View</a>
+								<a href="{{ route('propostas.edit', $row->id_propostas) }}" class="btn btn-outline-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>
