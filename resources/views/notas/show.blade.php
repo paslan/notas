@@ -47,10 +47,10 @@
                     {{ $nota->nronf }}
 				</div>
 				<div class="col-sm-2">
-                    {{ $nota->data_emissao }}
+                    {{ date( 'd/m/Y' , strtotime($nota->data_emissao))}}
 				</div>
                 <div class="col-sm-2">
-                    {{ $nota->data_vencto }}
+                    {{ date( 'd/m/Y' , strtotime($nota->data_vencto))}}
 				</div>
 			</div>
 		</form>

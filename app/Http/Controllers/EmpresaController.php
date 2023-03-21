@@ -158,7 +158,7 @@ class EmpresaController extends Controller
         $data = Notasfiscais::where('empresa_id', '=', $id)->with('empresa')
         ->paginate();
         //dd($data);
-        return view('notas/index',[
+        return view('notas/empresa',[
             'data' => $data
         ]);
     }

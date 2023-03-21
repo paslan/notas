@@ -7,6 +7,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\NotasController;
+use App\Models\Notasfiscais;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/', function () {
 })->name('menu');
 
 Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
+
 
 #Route::get('load_cidades', 'CidadeController@loadCidades')->name('load_cidades');
 
