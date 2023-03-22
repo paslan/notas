@@ -25,23 +25,28 @@
 			</div>
         </div>
     </div>
-	<div class="card-body">
+	<div class="card-body" >
 		<form name="notasform" id="notasform" method="post" action="{{ route('notas.store') }}">
 			@csrf
 			<div class="row mb-2">
 				<label class="col-2 col-label-form">Empresa</label>
 				<label class="col-10 col-label-form">Contrato</label>
 				<div class="col-sm-2">
-                    <select class="form-control" data-url="{{ url('encontrar-contratos') }}" data-token="{{ csrf_token() }}" onchange="changeContrato(this)" name="empresa_id" id="empresa_id">
+                    <select class="form-select" data-url="{{ url('encontrar-contratos') }}" data-token="{{ csrf_token() }}" onchange="changeContrato(this)" name="empresa_id" id="empresa_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($empresas as $empresa)
-                            <option value="{{ $empresa['id'] }}" @if(old('empresa_id') == $empresa['id']) {{ 'selected' }} @endif>{{ $empresa['nome'] }}</option>
+                            <option value="{{ $empresa['id'] }}" @if($emp == $empresa['id']) {{ 'selected' }} @endif>{{ $empresa['nome'] }}</option>
                         @endforeach
                     </select>
 				</div>
                 <div class="col-sm-6">
-                    <select class="form-control" name="contrato_id" id="contrato_id">
+                    <select class="form-select" name="contrato_id" id="contrato_id">
                         <option value="" selected>Selecione...</option>
+                        @if ($emp <> null)
+                            @foreach($contratos as $contrato)
+                                <option value="{{ $contrato['id'] }}">{{ $contrato['objeto'] }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
 			</div>

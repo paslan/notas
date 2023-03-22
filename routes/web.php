@@ -8,6 +8,7 @@ use App\Http\Controllers\PropostaController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\NotasController;
 use App\Models\Notasfiscais;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,7 @@ Route::get('/', function () {
 
 Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
 
-
-#Route::get('load_cidades', 'CidadeController@loadCidades')->name('load_cidades');
+Route::get('notas/create/{emp?}', [NotasController::class, 'create'])->name('notas.createemp');
 
 Route::post('encontrar-cidades', [CidadeController::class, 'encontraCidades']);
 

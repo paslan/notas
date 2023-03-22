@@ -37,12 +37,15 @@ class NotasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($emp = null)
     {
 
         $empresas = Empresa::orderBy('nome')->get();
+        $contratos = Contrato::all()->where('empresa_id', '=', $emp);
         return view('./notas/create', [
             'empresas' => $empresas,
+            'contratos' => $contratos,
+            'emp'      => $emp,
         ]);
 
     }

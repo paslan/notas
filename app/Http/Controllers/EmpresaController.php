@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cidade;
+use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Estado;
 use App\Models\Notasfiscais;
@@ -155,11 +156,13 @@ class EmpresaController extends Controller
 
     public function notas ($id)
     {
+        $empresa = Empresa::find($id);
         $data = Notasfiscais::where('empresa_id', '=', $id)->with('empresa')
         ->paginate();
-        //dd($data);
+        //dd($contratos);
         return view('notas/empresa',[
-            'data' => $data
+            'data' => $data,
+            'empresa'   => $empresa,
         ]);
     }
 

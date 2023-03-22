@@ -13,9 +13,9 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-10"><b>Notas Fiscais</b></div>
+			<div class="col col-md-10"><b>Notas Fiscais - Empresa: {{ $empresa->razao_social }}</b></div>
 			<div class="col col-md-2">
-				<a href="{{ route('notas.create') }}" class="btn btn-outline-success btn-sm">Add</a>
+				<a href="{{ route('notas.createemp', $empresa->id) }}" class="btn btn-outline-success btn-sm">Add</a>
                 <a href="{{ route('empresas.index') }}" class="btn btn-outline-primary btn-sm">Empresas</a>
 			</div>
 		</div>
