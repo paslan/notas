@@ -18,9 +18,21 @@ class NotasController extends Controller
     public function index(Request $request)
     {
 
-        $data = Notasfiscais::where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
-        ->orderby('nronf')
+
+        $data = DB::table('notasfiscais')
+        ->join('empresas', 'empresa_id', '=', 'empresas.id')
+        ->join('contratos', 'contrato_id', '=', 'contrato_id')
+        ->select('*')
+        ->selectRaw('contratos.empresa_id as id_empresa, empresas.nome as nome_empresas, empresas.id as id_empresas ')
+        ->where($request->campo == null ? 'notasfiscais.empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderBy('empresas.nome', 'asc')
         ->paginate();
+        //dd($data);
+
+
+        //$data = Notasfiscais::where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
+        //->orderby('nronf')
+        //->paginate();
 
 
         //$data = DB::table('notasfiscais')
