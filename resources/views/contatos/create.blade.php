@@ -42,7 +42,7 @@
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Nome</label>
 				<div class="col-sm-12">
-					<input type="text" name="nome" class="form-control" placeholder="Nome">
+					<input type="text" name="nome" class="form-control" placeholder="Nome" value="{{ old('nome') }}">
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -51,10 +51,10 @@
             </div>
 			<div class="row mb-2">
                 <div class="col-sm-6">
-					<input type="e-mail1" name="email1" class="form-control" placeholder="E-mail">
+					<input type="e-mail1" name="email1" class="form-control" placeholder="E-mail" value="{{ old('e-mail1') }}">
 				</div>
 				<div class="col-sm-6">
-					<input type="e-mail2" name="email2" class="form-control" placeholder="E-mail">
+					<input type="e-mail2" name="email2" class="form-control" placeholder="E-mail" value="{{ old('e-mail2') }}">
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -63,10 +63,10 @@
 			</div>
 			<div class="row mb-3">
 				<div class="col-sm-3">
-					<input type="text" name="telefone1" class="form-control" />
+					<input type="text" name="telefone1" class="form-control" value="{{ old('telefone1') }}"/>
 				</div>
                 <div class="col-sm-3">
-					<input type="text" name="telefone2" class="form-control" />
+					<input type="text" name="telefone2" class="form-control" value="{{ old('telefone2') }}"/>
 				</div>
 			</div>
 			<div class="text-center">

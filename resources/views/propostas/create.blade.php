@@ -48,13 +48,13 @@
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Objeto</label>
 				<div class="col-sm-12">
-					<textarea type="text" name="objeto" class="form-control" placeholder="Objeto"></textarea>
+					<textarea type="text" name="objeto" class="form-control" placeholder="Objeto" value="{{ old('objeto') }}"></textarea>
 				</div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Descrição</label>
 				<div class="col-sm-12">
-                    <input type="text" name="descricao" id="descricao" class="form-control" placeholder="Descrição">
+                    <input type="text" name="descricao" id="descricao" class="form-control" placeholder="Descrição" value="{{ old('descricao') }}">
 				</div>
 			</div>
 			<div class="row mb-2">
@@ -67,19 +67,20 @@
 			</div>
 			<div class="row mb-3">
 				<div class="col-sm-2">
-					<input type="date" name="dt_assinatura" class="form-control" />
+					<input type="date" name="dt_assinatura" class="form-control" value="{{ old('dt_assinatura') }}"/>
 				</div>
                 <div class="col-sm-2">
                     <input type="checkbox" class="form-check-input" name="assinado" value="1" id="assinadoCheck">
+                    {{ old('assinado') == '1' ? 'checked' : '0' }}
                   </div>
                     <div class="col-sm-2">
-					<input type="date" name="inicio_vigencia" class="form-control" />
+					<input type="date" name="inicio_vigencia" class="form-control" value="{{ old('inicio_vigencia') }}"/>
 				</div>
 				<div class="col-sm-2">
-					<input type="date" name="fim_vigencia" class="form-control" />
+					<input type="date" name="fim_vigencia" class="form-control" value="{{ old('fim_vigencia') }}"/>
 				</div>
 				<div class="col-sm-2">
-					<input type="text" name="valor" class="form-control" placeholder="Valor" />
+					<input type="text" name="valor" class="form-control" placeholder="Valor" value="{{ old('valor') }}"/>
 				</div>
 				<div class="col-sm-1">
 					<input type="text" name="ultimo_ta" class="form-control" />

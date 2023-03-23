@@ -31,39 +31,39 @@
 			<div class="row mb-2">
 				<label class="col-sm-12 col-label-form">Nome</label>
 				<div class="col-sm-12">
-					<input type="text" name="nome" class="form-control" placeholder="Nome" />
+					<input type="text" name="nome" class="form-control" placeholder="Nome" value="{{ old('nome') }}" />
 				</div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-sm-12 col-label-form">Razao Social</label>
 				<div class="col-sm-12">
-					<input type="text" name="razao_social" onkeyup="maiuscula(this)" class="form-control" placeholder="Razão Social"/>
+					<input type="text" name="razao_social" onkeyup="maiuscula(this)" class="form-control" placeholder="Razão Social" value="{{ old('razao_social') }}"/>
 				</div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-sm-12 col-label-form">CNPJ</label>
 				<div class="col-sm-6">
-					<input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="CNPJ"/>
+					<input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="CNPJ" value="{{ old('cnpj') }}"/>
 				</div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-sm-9 col-label-form">Endereco</label>
 				<label class="col-sm-3 col-label-form">Nro</label>
 				<div class="col-sm-9">
-					<input type="text" name="endereco" class="form-control" placeholder="Endereço" />
+					<input type="text" name="endereco" class="form-control" placeholder="Endereço" value="{{ old('endereco') }}"/>
 				</div>
 				<div class="col-sm-1">
-					<input type="text" name="nro" class="form-control" placeholder="Nro" />
+					<input type="text" name="nro" class="form-control" placeholder="Nro" value="{{ old('nro') }}"/>
 				</div>
 			</div>
 			<div class="row mb-2">
 				<label class="col-sm-9 col-label-form">Complemento</label>
 				<label class="col-sm-3 col-label-form">Bairro</label>
 				<div class="col-sm-9">
-					<input type="text" name="complemento" class="form-control" placeholder="Complemento" />
+					<input type="text" name="complemento" class="form-control" placeholder="Complemento" value="{{ old('complemento') }}"/>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" name="bairro" class="form-control" placeholder="Bairro" />
+					<input type="text" name="bairro" class="form-control" placeholder="Bairro" value="{{ old('bairro') }}"/>
 				</div>
 			</div>
 			<div class="row mb-2">

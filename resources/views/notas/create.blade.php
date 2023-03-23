@@ -56,13 +56,13 @@
 				<label class="col-sm-2 col-label-form">Vencto</label>
                 <div class="row"></div>
 				<div class="col-sm-2">
-                    <input type="text" name="nronf" id="nronf" class="form-control" placeholder="nro NF">
+                    <input type="text" name="nronf" id="nronf" class="form-control" placeholder="nro NF" value="{{ old('nronf') }}">
 				</div>
 				<div class="col-sm-2">
-					<input type="date" name="data_emissao" class="form-control" />
+					<input type="date" name="data_emissao" class="form-control" value="{{ old('data_emissao') }}"/>
 				</div>
                 <div class="col-sm-2">
-					<input type="date" name="data_vencto" class="form-control" />
+					<input type="date" name="data_vencto" class="form-control" value="{{ old('data_vencto') }}"/>
 				</div>
 			</div>
 			<div class="text-center">

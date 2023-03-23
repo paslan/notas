@@ -85,11 +85,6 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //$empresa->contratos()->create([
-        //   'objeto' => 'Objeto 1',
-        //   'descricao' => 'Desccrição 1',
-        //
-        //]);
 
         $cidade = Cidade::find($empresa->cidade_id);
         $estado = Estado::find($empresa->estado_id);
