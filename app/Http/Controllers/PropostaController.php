@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePropostaFormRequest;
 use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Proposta;
@@ -25,13 +26,6 @@ class PropostaController extends Controller
         ->select('*')
         ->selectRaw('propostas.id as id_propostas, empresas.id as id_empresas ')
         ->paginate();
-
-
-        //$data = DB::table('propostas')
-        //        ->join('empresas', 'empresa_id', '=', 'empresas.id')
-        //        ->where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-        //        ->orderBy('empresas.nome', 'asc')
-        //        ->paginate();
 
         //dd($data);
 
@@ -60,29 +54,13 @@ class PropostaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdatePropostaFormRequest $request)
     {
-        $request->validate([
-            'objeto'           => 'required',
-            'descricao'        => 'required',
-            'empresa_id'       => 'required',
-            'contrato_id'      => 'required',
-            'inicio_vigencia'  => 'required',
-            'fim_vigencia'     => 'required',
-        ]);
 
+        $data = $request->all();
+        //dd($data);
 
-        $proposta = Proposta::create([
-            'objeto'           => $request -> objeto,
-            'descricao'        => $request -> descricao,
-            'contrato_id'      => $request -> contrato_id,
-            'empresa_id'       => $request -> empresa_id,
-            'data_assinatura'  => $request -> dt_assinatura,
-            'assinado'         => $request -> assinado,
-            'inicio_vigencia'  => $request -> inicio_vigencia,
-            'fim_vigencia'     => $request -> fim_vigencia,
-            'valor'            => $request -> valor,
-        ]);
+        $proposta = Proposta::create($data);
 
         return redirect()->route('propostas.index')->with('success', 'Proposta adicionada com sucesso.');
 

@@ -16,8 +16,8 @@ class Empresa extends Model
         'nro',
         'complemento',
         'bairro',
-        'uf',
-        'cidade',
+        'estado_id',
+        'cidade_id',
     ];
 
     public function contratos()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateContratoFormRequest;
 use App\Models\Contrato;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
@@ -53,26 +54,12 @@ class ContratoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateContratoFormRequest $request)
     {
-        $request->validate([
-            'empresa_id'    => 'required',
-            'objeto'        => 'required',
-            'descricao'     => 'required',
-        ]);
-
+        $data = $request->all();
         //dd($request -> assinado);
 
-        $contrato = Contrato::create([
-            'empresa_id'       => $request -> empresa_id,
-            'objeto'           => $request -> objeto,
-            'descricao'        => $request -> descricao,
-            'data_assinatura'  => $request->dt_assinatura,
-            'assinado'         => $request->assinado,
-            'inicio_vigencia'  => $request->inicio_vigencia,
-            'fim_vigencia'     => $request->fim_vigencia,
-            'valor'            => $request->valor,
-        ]);
+        $contrato = Contrato::create($data);
 
         return redirect()->route('contratos.index')->with('success', 'Contrato adicionado com sucesso.');
     }

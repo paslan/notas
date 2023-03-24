@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateNotasFormRequest;
 use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
@@ -28,17 +29,6 @@ class NotasController extends Controller
         ->orderBy('empresas.nome', 'asc')
         ->paginate();
         //dd($data);
-
-
-        //$data = Notasfiscais::where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
-        //->orderby('nronf')
-        //->paginate();
-
-
-        //$data = DB::table('notasfiscais')
-        //->where($request->campo == null ? 'nronf' :  $request->campo, 'LIKE', "%{$request->search}%")
-        //->orderby('nronf')
-        //->paginate();
 
         return view('./notas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -68,25 +58,13 @@ class NotasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateNotasFormRequest $request)
     {
-        $request->validate([
-            'empresa_id'    => 'required',
-            'contrato_id'   => 'required',
-            'nronf'         => 'required',
-            'data_emissao'  => 'required',
-            'data_vencto'   => 'required',
-        ]);
 
+        $data = $request->all();
         //dd($request -> assinado);
 
-        $contrato = Notasfiscais::create([
-            'empresa_id'       => $request -> empresa_id,
-            'contrato_id'      => $request -> contrato_id,
-            'nronf'            => $request -> nronf,
-            'data_emissao'     => $request -> data_emissao,
-            'data_vencto'      => $request -> data_vencto,
-        ]);
+        $nota = Notasfiscais::create($data);
 
         return redirect()->route('notas.index')->with('success', 'Nota Fiscal adicionada com sucesso.');
 

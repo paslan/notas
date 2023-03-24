@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateEmpresaFormRequest;
 use App\Models\Cidade;
 use App\Models\Contrato;
 use App\Models\Empresa;
@@ -49,30 +50,13 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateEmpresaFormRequest $request)
     {
-        $request->validate([
-            'nome'          => 'required',
-            'razao_social'  => 'required',
-            'endereco'      => 'required',
-            'nro'           => 'required',
-            'cnpj'          => 'required',
-        ]);
 
+        $data = $request->all();
+        //dd($request->cidade_id);
 
-        $empresa = new Empresa;
-
-        $empresa->nome          = $request->nome;
-        $empresa->razao_social  = $request->razao_social;
-        $empresa->cnpj          = $request->cnpj;
-        $empresa->endereco      = $request->endereco;
-        $empresa->nro           = $request->nro;
-        $empresa->complemento   = $request->complemento;
-        $empresa->bairro        = $request->bairro;
-        $empresa->cidade_id     = $request->cidade_id;
-        $empresa->estado_id     = $request->estado_id;
-
-        $empresa->save();
+        $empresa = Empresa::create($data);
 
         return redirect()->route('empresas.index')->with('sucess', 'Empresa adicionado com sucesso.');
     }

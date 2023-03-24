@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('endereco', 100);
             $table->string('nro', 20);
             $table->string('complemento', 50)->nullable();
-            $table->string('bairro', 50);
+            $table->string('bairro', 50)->nullable();
 
             $table->timestamps();
 

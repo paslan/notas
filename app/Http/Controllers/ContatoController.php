@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateContatoFormRequest;
 use App\Models\Contato;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
@@ -51,24 +52,12 @@ class ContatoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateContatoFormRequest $request)
     {
-        $request->validate([
-            'empresa_id'   => 'required',
-            'nome'         => 'required',
-            'email1'       => 'required',
-        ]);
-
+        $data = $request->all();
         //dd($request -> assinado);
 
-        $contrato = Contato::create([
-            'empresa_id' => $request -> empresa_id,
-            'nome'       => $request -> nome,
-            'email1'     => $request -> email1,
-            'email2'     => $request -> email2,
-            'telefone1'  => $request -> telefone1,
-            'telefone2'  => $request -> telefone2,
-        ]);
+        $contato = Contato::create($data);
 
         return redirect()->route('contatos.index')->with('success', 'Contato adicionado com sucesso.');
 

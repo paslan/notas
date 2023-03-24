@@ -51,10 +51,10 @@
             </div>
 			<div class="row mb-2">
                 <div class="col-sm-6">
-					<input type="e-mail1" name="email1" class="form-control" placeholder="E-mail" value="{{ old('e-mail1') }}">
+					<input type="e-mail1" name="email1" class="form-control" placeholder="E-mail" value="{{ old('email1') }}">
 				</div>
 				<div class="col-sm-6">
-					<input type="e-mail2" name="email2" class="form-control" placeholder="E-mail" value="{{ old('e-mail2') }}">
+					<input type="e-mail2" name="email2" class="form-control" placeholder="E-mail" value="{{ old('email2') }}">
 				</div>
 			</div>
 			<div class="row mb-2">
