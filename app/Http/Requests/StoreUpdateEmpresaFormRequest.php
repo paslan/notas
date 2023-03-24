@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateEmpresaFormRequest extends FormRequest
 {
@@ -23,14 +24,44 @@ class StoreUpdateEmpresaFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-                'nome'          => 'required|string|max:255|min:3',
-                'razao_social'  => 'required|unique:empresas',
-                'endereco'      => 'required',
-                'nro'           => 'required',
-                'estado_id'     => 'required',
-                'cidade_id'     => 'required',
-                'cnpj'          => 'required|unique:empresas',
+        $rules =
+        [
+            'nome'          => 'required|string|max:255|min:3',
+
+            'endereco'      => 'required',
+            'nro'           => 'required',
+            'estado_id'     => 'required',
+            'cidade_id'     => 'required',
         ];
+
+        if($this->getMethod() == "POST")
+        {
+            $rules +=
+            [
+                'razao_social'  => 'required|unique:empresas,razao_social',
+                'cnpj'          => 'required|unique:empresas,cnpj',
+            ];
+        }
+
+        if($this->getMethod() == "PUT")
+        {
+            $rules +=
+            [
+                'razao_social'  =>
+                [
+                    'required',
+                    Rule::unique('empresas')->ignore($this->empresa),
+                ],
+                'cnpj'          =>
+                [
+                    'required',
+                    Rule::unique('empresas')->ignore($this->empresa),
+                ],
+            ];
+        }
+
+
+        return $rules;
+
     }
 }

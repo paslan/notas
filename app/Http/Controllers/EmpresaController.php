@@ -87,6 +87,7 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
+
         $empresa = Empresa::find($id);
         $cidades = Cidade::all()->where('estado_id', $empresa->estado_id);
         $estados = Estado::all();
@@ -104,15 +105,13 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa) {
+    public function update(StoreUpdateEmpresaFormRequest $request, $id)
+    {
+        $data = $request->all();
 
-        $request->validate([
-            'nome'          => 'required',
-            'razao_social'  => 'required',
-            'cnpj'          => 'required',
-        ]);
+        //dd($request->empresa_id);
 
-        $empresa->update($request->all());
+        Empresa::findOrFail($request->empresa_id)->update($data);
 
         return redirect()->route('empresas.index')
                          ->with('success', 'Empresa atualizada com sucesso.');

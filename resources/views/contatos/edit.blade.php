@@ -26,8 +26,9 @@
         </div>
     </div>
 	<div class="card-body">
-		<form name="contatoform" id="contatoform" method="post" action="{{ route('contatos.store') }}">
+		<form name="contatoform" id="contatoform" method="post" action="{{ route('contatos.update', $contato->id) }}">
 			@csrf
+            @method("PUT")
 			<div class="row mb-2">
                 <div class="row">
                     <label class="col-12 col-label-form">Empresa</label>
@@ -79,7 +80,7 @@
 			</div>
 
 			<div class="text-center">
-				<input type="submit" class="btn btn-outline-primary" value="Save" />
+				<input type="submit" class="btn btn-outline-primary" value="Update" />
 			</div>
 
             <div class="result"></div>

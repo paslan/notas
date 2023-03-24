@@ -2,34 +2,18 @@
 
 @section('content')
 
-@if($errors->any())
-
-<div class="alert alert-danger">
-	<ul>
-	@foreach($errors->all() as $error)
-
-		<li>{{ $error }}</li>
-
-	@endforeach
-	</ul>
-</div>
-
-@endif
-
 <div class="card">
-	<div class="card-header">
-        <div class="row">
-            <div class="col col-md-6"><b>Edit Empresas</b></div>
-			<div class="col col-md-6">
-				<a href="{{ route('empresas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
-			</div>
+    <div class="row">
+        <div class="col col-md-6"><b>Empresa Edit</b></div>
+        <div class="col col-md-6">
+            <a href="{{ route('empresas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
         </div>
     </div>
+
 	<div class="card-body">
 		<form name="empresaform" id="empresaform" method="post" action="{{ route('empresas.update', $empresa->id) }}">
 			@csrf
-            @method("PUT")
-
+			@method("PUT")
 			<div class="row mb-3">
 				<label class="col-sm-2 col-label-form">Nome</label>
 				<div class="col-sm-10">
@@ -89,10 +73,9 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<input type="hidden" name="empresa_id" value="{{ $empresa->id }}" />
+				<input type="hidden" name="hidden_id" value="{{ $empresa->id }}" />
 				<input type="submit" class="btn btn-outline-primary" value="Update" />
 			</div>
-            <div class="result"></div>
 		</form>
 	</div>
 </div>
@@ -101,8 +84,37 @@
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
         integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
+<script>
+    function changeCity(response) {
+        //alert(response.value);
+    $.ajax({
+        url: $(response).data('url'),
+        type: 'post',
+        data: {_method: 'post', _token: $(response).data('token'), estado_id: response.value},
+        success: function(res) {
+            $("#cidade_id").empty();
+            $('#cidade_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+            $.each( res, function(a, b) {
+                $('#cidade_id').append($('<option>', {value: b['id'], text: b['nome']}));
+
+            });
+        },
+        error: function(){
+            console.log('error');
+        },
+    });
+    }
+
+    function maiuscula(z){
+        v = z.value.toUpperCase();
+        z.value = v;
+    }
+
+    $(document).ready(function($){
+        $('#cnpj').mask('99.999.999/9999-99');
+   });
+
+</script>
+
 
 @endsection('content')
-
-
-
