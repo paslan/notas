@@ -26,8 +26,9 @@
         </div>
     </div>
 	<div class="card-body">
-		<form name="notasform" id="notasform" method="post" action="{{ route('notas.store') }}">
+		<form name="notasform" id="notasform" method="post" action="{{ route('notas.update', $nota->id) }}">
 			@csrf
+            @method('PUT')
 			<div class="row mb-2">
 				<label class="col-2 col-label-form">Empresa</label>
 				<label class="col-10 col-label-form">Contrato</label>
@@ -70,6 +71,7 @@
 				</div>
 			</div>
 			<div class="text-center">
+                <input type="hidden" name="nota_id" value="{{ $nota->id }}" />
 				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>
 

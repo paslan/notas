@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateNotasFormRequest;
 use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,16 +19,9 @@ class NotasController extends Controller
      */
     public function index(Request $request)
     {
-
-
-        $data = DB::table('notasfiscais')
-        ->join('empresas', 'empresa_id', '=', 'empresas.id')
-        ->join('contratos', 'contrato_id', '=', 'contrato_id')
-        ->select('*')
-        ->selectRaw('contratos.empresa_id as id_empresa, empresas.nome as nome_empresas, empresas.id as id_empresas ')
-        ->where($request->campo == null ? 'notasfiscais.empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-        ->orderBy('empresas.nome', 'asc')
-        ->paginate();
+        $data = Notasfiscais::with(['empresa', 'contrato'])
+                ->where($request->campo == null ? 'notasfiscais.empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
+                ->paginate();
         //dd($data);
 
         return view('./notas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -97,10 +91,13 @@ class NotasController extends Controller
      */
     public function edit($id)
     {
+
         $nota  = Notasfiscais::find($id);
         $empresas = Empresa::all();
         $contratos = Contrato::where('empresa_id', $nota->empresa_id)->get();
-        //dd($contratos);
+
+        //dd($nota);
+
         return view('./notas/edit', [
             'nota'       => $nota,
             'contratos'  => $contratos,
@@ -116,9 +113,17 @@ class NotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateNotasFormRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        //dd($request->nota_id);
+
+        Notasfiscais::findOrFail($request->nota_id)->update($data);
+
+        return redirect()->route('notas.index')
+                         ->with('success', 'Nota atualizada com sucesso.');
+
     }
 
     /**
@@ -127,9 +132,18 @@ class NotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Notasfiscais $nota)
     {
-        //
+        $nota->delete();
+
+        return redirect()->route('notas.index')->with('success', 'Nota excluida com sucesso.');
+
     }
+
+    /**
+     * Get the empresa that owns the NotasController
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 
 }

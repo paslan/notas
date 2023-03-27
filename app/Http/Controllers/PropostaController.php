@@ -113,9 +113,17 @@ class PropostaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdatePropostaFormRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        //dd($request->id);
+
+        Proposta::findOrFail($request->id)->update($data);
+
+        return redirect()->route('propostas.index')
+                         ->with('success', 'Proposta atualizada com sucesso.');
+
     }
 
     /**
@@ -124,8 +132,11 @@ class PropostaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Proposta $proposta)
     {
-        //
+        $proposta->delete();
+
+        return redirect()->route('propostas.index')->with('success', 'Proposta excluida com sucesso.');
+
     }
 }

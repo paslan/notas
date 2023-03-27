@@ -26,8 +26,9 @@
         </div>
     </div>
 	<div class="card-body">
-		<form name="propostaform" id="propostaform" method="post" action="{{ route('propostas.store') }}">
+		<form name="propostaform" id="propostaform" method="post" action="{{ route('propostas.update', $proposta->id) }}">
 			@csrf
+            @method("PUT")
 			<div class="row mb-2">
 				<label class="col-2 col-label-form">Empresa</label>
 				<label class="col-10 col-label-form">Contrato</label>
@@ -47,10 +48,10 @@
                     <select class="form-select" name="contrato_id" id="contrato_id">
                         <option value="">Selecione...</option>
                         @foreach($contratos as $contrato)
-                            <option value="{{ $contrato['id'] }}" @if ($contrato['id'] == $proposta['contrato_id'])
-                                selected
-                            @endif>
-                            {{ $contrato['descricao'] }}</option>
+                            <option value="{{ $contrato['id'] }}"
+                                @selected($contrato['id'] == $proposta['contrato_id'])>
+                                {{ $contrato['descricao'] }}
+                            </option>
                         @endforeach
                     </select>
 				</div>
@@ -90,7 +91,7 @@
 					<input type="date" name="inicio_vigencia" class="form-control" value="{{ $proposta->inicio_vigencia }}"/>
 				</div>
 				<div class="col-sm-2">
-					<input type="date" name="fim_vigencia" class="form-control" value="{{ $proposta->final_vigencia }}"/>
+					<input type="date" name="fim_vigencia" class="form-control" value="{{ $proposta->fim_vigencia }}"/>
 				</div>
 				<div class="col-sm-2">
 					<input type="text" name="valor" class="form-control" placeholder="Valor" value="{{ $proposta->valor }}" />
@@ -100,6 +101,7 @@
 				</div>
 			</div>
 			<div class="text-center">
+                <input type="hidden" name="id" value="{{ $proposta->id }}" />
 				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>
 

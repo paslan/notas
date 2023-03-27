@@ -45,6 +45,14 @@
                     </select>
                 </div>
 			</div>
+            <div class="btn-group" role="group" aria-label="Tipo">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">TA</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio2">Proposta</label>
+
+            </div>
 			<div class="row mb-2">
 				<label class="col-12 col-label-form">Objeto</label>
 				<div class="col-sm-12">

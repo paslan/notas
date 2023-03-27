@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('propostas', function (Blueprint $table) {
-
-
-    });
-
+        Schema::table('propostas', function (Blueprint $table) {
+           $table->tinyInteger('tipo')->after('id')->default(1);
+        });
     }
 
     /**

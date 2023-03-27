@@ -128,7 +128,7 @@ class EmpresaController extends Controller
     {
         $empresa->delete();
 
-        return redirect()->route('empresas.index')->with('sucess', 'Empresa excluida com sucesso.');
+        return redirect()->route('empresas.index')->with('success', 'Empresa excluida com sucesso.');
 
     }
 

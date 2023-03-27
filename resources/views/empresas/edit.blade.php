@@ -72,7 +72,10 @@
                     <select class="form-select" data-url="{{ url('encontrar-cidades') }}" data-token="{{ csrf_token() }}" onchange="changeCity(this)" name="estado_id" id="estado_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($estados as $estado)
-                            <option value="{{ $estado['id'] }}" @if($empresa['estado_id'] == $estado['id']) {{ 'selected' }} @endif>{{ $estado['nome'] }}</option>
+                            <option value="{{ $estado['id'] }}"
+                                @selected($empresa['estado_id'] == $estado['id'])>
+                                {{ $estado['nome'] }}
+                            </option>
                         @endforeach
                     </select>
 				</div>
@@ -83,7 +86,10 @@
                     <select class="form-select" name="cidade_id" id="cidade_id">
                         <option value="" selected>Selecione...</option>
                         @foreach($cidades as $cidade)
-                            <option value="{{ $cidade['id'] }}" @if($empresa['cidade_id'] == $cidade['id']) {{ 'selected' }} @endif>{{ $cidade['nome'] }}</option>
+                            <option value="{{ $cidade['id'] }}"
+                                @selected($empresa['cidade_id'] == $cidade['id'])>
+                                {{ $cidade['nome'] }}
+                            </option>
                         @endforeach
                     </select>
 				</div>

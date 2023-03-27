@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{ route('contratos.index') }}">Contratos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('propostas.index') }}">Propostas</a>
+                    <a class="nav-link" href="{{ route('propostas.index') }}">TA/Propostas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contatos.index') }}">Contatos</a>

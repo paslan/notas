@@ -43,6 +43,7 @@
 		<table class="table table-bordered table-sm">
 			<tr>
 				<th scope="col">Id</th>
+				<th scope="col">Tipo</th>
 				<th scope="col">Empresa</th>
 				<th scope="col">Objeto</th>
 				<th scope="col">Descricao</th>
@@ -53,6 +54,7 @@
 
 					<tr>
 						<td scope="row">{{ $row->id_propostas }}</td>
+						<td style="width:5%">{{ $row->tipo == 1 ? 'TA' : 'Proposta' }}</td>
 						<td style="width:10%">{{ $row->nome }}</td>
 						<td style="width:50%">{{ $row->objeto }}</td>
 						<td>{{ $row->descricao }}</td>

@@ -38,10 +38,10 @@
                         <select class="form-select" name="empresa_id" id="empresa_id">
                             <option value="">Selecione...</option>
                             @foreach($empresas as $empresa)
-                                <option value="{{ $empresa['id'] }}" @if ($empresa['id'] == $contato['empresa_id'])
-                                    selected
-                                @endif>
-                                {{ $empresa['nome'] }}</option>
+                                <option value="{{ $empresa['id'] }}"
+                                    @selected($empresa['id'] == $contato['empresa_id'])>
+                                    {{ $empresa['nome'] }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
