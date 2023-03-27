@@ -19,7 +19,7 @@
 <div class="card">
 	<div class="card-header">
         <div class="row">
-            <div class="col col-md-6"><b>Add Propostas</b></div>
+            <div class="col col-md-6"><b>Add TA/Propostas</b></div>
 			<div class="col col-md-6">
 				<a href="{{ route('propostas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>

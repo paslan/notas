@@ -18,18 +18,13 @@ class ContratoController extends Controller
      */
     public function index(Request $request)
     {
-        $data = DB::table('contratos')
-                ->join('empresas', 'empresa_id', '=', 'empresas.id')
-                ->where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-                ->orderBy('empresas.nome', 'asc')
-                ->paginate();
+
+        $data = Contrato::select('contratos.*')
+        ->join('empresas', 'empresas.id','=', 'contratos.empresa_id')
+        ->orderBy('empresas.nome')
+        ->paginate();
+
         //dd($data);
-
-        //$data = Contrato::where($request->campo == null ? 'empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")->with('empresa')
-        //->orderby('empresa_id')
-        //->paginate();
-
-        //$data = DB::table('contratos')->paginate();
 
         return view('./contratos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
 

@@ -13,7 +13,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-10"><b>Propostas</b></div>
+			<div class="col col-md-10"><b>TA/Propostas</b></div>
 			<div class="col col-md-2">
 				<a href="{{ route('propostas.create') }}" class="btn btn-outline-success btn-sm">Add</a>
                 <a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>

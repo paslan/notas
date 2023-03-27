@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Contrato extends Model
 {
@@ -21,7 +22,7 @@ class Contrato extends Model
     ];
 
 
-    public function empresa()
+    public function empresa() :BelongsTo
     {
         return $this->belongsTo(Empresa::class);
     }

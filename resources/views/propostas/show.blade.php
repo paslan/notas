@@ -5,7 +5,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>Proposta Details</b></div>
+			<div class="col col-md-6"><b>TA/Proposta Details</b></div>
 			<div class="col col-md-6">
 				<a href="{{ route('propostas.index') }}" class="btn btn-outline-primary btn-sm float-end">View All</a>
 			</div>

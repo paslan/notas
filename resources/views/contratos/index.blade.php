@@ -53,7 +53,7 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->nome }}</td>
+						<td style="width:10%">{{ $row->empresa->nome }}</td>
 						<td style="width:50%">{{ $row->objeto }}</td>
 						<td>{{ $row->descricao }}</td>
 						<td>
