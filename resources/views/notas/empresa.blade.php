@@ -28,6 +28,7 @@
                 </div>
                 <div class="col-sm-2">
                     <select class="form-select" name="campo" id="campo">
+                        <option value="descricao">Contrato</option>
                         <option value="nronf">NF</option>
                         <option value="data_emissao">Emissão</option>
                         <option value="data_vencto">Vencto</option>
@@ -55,8 +56,8 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->empresa->nome }}</td>
-						<td style="width:10%">{{ $row->contrato->descricao }}</td>
+						<td style="width:10%">{{ $row->nome }}</td>
+						<td style="width:10%">{{ $row->descricao }}</td>
 						<td>{{ $row->nronf }}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>
