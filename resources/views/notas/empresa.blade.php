@@ -21,9 +21,22 @@
 		</div>
 	</div>
     <div>
-        <form action="{{ route('notas.index') }}" method="get">
-            <input type="text" name="search" id="search" placeholder="Pesquisar">
-            <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+        <form action="{{ route('empresas.notas', $empresa->id) }}" method="get">
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="text" name="search" id="search" placeholder="Pesquisar">
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-select" name="campo" id="campo">
+                        <option value="nronf">NF</option>
+                        <option value="data_emissao">Emissão</option>
+                        <option value="data_vencto">Vencto</option>
+                    </select>
+                </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-outline-info btn-sm">Pesquisar</button>
+                </div>
+            </div>
         </form>
     </div>
 	<div class="card-body">
@@ -43,7 +56,7 @@
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
 						<td style="width:10%">{{ $row->empresa->nome }}</td>
-						<td style="width:10%">{{ $row->contrato_id }}</td>
+						<td style="width:10%">{{ $row->contrato->descricao }}</td>
 						<td>{{ $row->nronf }}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>
