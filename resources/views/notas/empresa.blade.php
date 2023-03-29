@@ -57,9 +57,9 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->nome }}</td>
-						<td style="width:10%">{{ $row->descricao }}</td>
-						<td>{{ $row->nronf }}</td>
+						<td style="width:10%">{{ $row->empresa->nome }}</td>
+						<td style="width:20%">{{ $row->contrato->descricao }}</td>
+						<td style="width:15%">{{ $row->nronf }}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>
 						<td>

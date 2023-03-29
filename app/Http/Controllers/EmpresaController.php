@@ -159,18 +159,13 @@ class EmpresaController extends Controller
     {
 
         $empresa = Empresa::find($id);
-        //$data = Notasfiscais::where('empresa_id', '=', $id)->with('empresa', 'contrato')
-        //->where($request->campo == null ? 'id' :  $request->campo, 'LIKE', "%{$request->search}%")
-        //->paginate();
 
-        $data = DB::table('notasfiscais')
-        ->join('empresas', 'empresa_id', '=', 'empresas.id')
-        ->join('contratos', 'contrato_id', '=', 'contratos.id')
-        ->where($request->campo == null ? 'notasfiscais.id' :  $request->campo, 'LIKE', "%{$request->search}%")
-        ->orderBy('notasfiscais.id', 'asc')
-        ->select('*')
-        ->selectRaw('notasfiscais.id as id_notasfiscais, empresas.id as id_empresas ')
-        ->paginate();
+        $data = Notasfiscais::where ('notasfiscais.empresa_id', $id)
+                ->join('empresas', 'empresa_id', '=', 'empresas.id')
+                ->join('contratos', 'contrato_id', '=', 'contratos.id')
+                ->where($request->campo == null ? 'notasfiscais.id' :  $request->campo, 'LIKE', "%{$request->search}%")
+                ->orderBy('notasfiscais.id', 'asc')
+                ->paginate();
 
 
         //dd($data);
