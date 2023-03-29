@@ -10,6 +10,13 @@
 
 @endif
 
+@if($message = Session::get('error'))
+    <div class="alert alert-warning">
+        {{ $message }}
+    </div>
+@endif
+
+
 <div class="card">
 	<div class="card-header">
 		<div class="row">

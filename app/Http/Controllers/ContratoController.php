@@ -113,8 +113,13 @@ class ContratoController extends Controller
      */
     public function destroy($id)
     {
-        if (!$contrato = Contrato::findOrFail($id)){
+        if (!$contrato = Contrato::withCount('notas')->findOrFail($id)){
             return redirect()->route('contratos.index')->with('success', 'Contrato não encontrado! ');
+        }
+
+        // Pesquisa relacionados
+        if ($contrato->notas_count > 0){
+            return redirect()->route('contratos.index')->with('error', 'Erro: Impossível exluir! - Contrato possui Notas Fiscais cadastradas! ');
         }
 
         $contrato->delete();
