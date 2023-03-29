@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Proposta extends Model
 {
@@ -22,9 +23,14 @@ class Proposta extends Model
     ];
 
 
-    public function contrato()
+    public function contrato(): BelongsTo
     {
         return $this->belongsTo(Contrato::class);
+    }
+
+    public function empresa(): BelongsTo
+    {
+        return $this->belongsTo(Empresa::class);
     }
 
 

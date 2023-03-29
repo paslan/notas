@@ -134,7 +134,7 @@ class PropostaController extends Controller
      */
     public function destroy($id)
     {
-        if (!$proposta = Proposta::findOrFail($id)){
+        if (!$proposta = Proposta::withCount('empresa', 'contrato')->findOrFail($id)){
             return redirect()->route('propostas.index')->with('success', 'Proposta não encontrada! ');
         }
 
