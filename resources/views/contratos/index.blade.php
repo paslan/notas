@@ -61,8 +61,8 @@
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
 						<td style="width:10%">{{ $row->empresa->nome }}</td>
-						<td style="width:50%">{{ $row->objeto }}</td>
-						<td>{{ $row->descricao }}</td>
+						<td style="width:30%">{{ $row->objeto }}</td>
+						<td style="width:30%">{{ $row->descricao }}</td>
 						<td>
 							<form method="post" action="{{ route('contratos.destroy', $row->id) }}">
 								@csrf
