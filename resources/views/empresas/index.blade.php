@@ -3,12 +3,17 @@
 @section('content')
 
 @if($message = Session::get('success'))
-
-<div class="alert alert-success">
-	{{ $message }}
-</div>
-
+    <div class="alert alert-success">
+        {{ $message }}
+    </div>
 @endif
+
+@if($message = Session::get('error'))
+    <div class="alert alert-warning">
+        {{ $message }}
+    </div>
+@endif
+
 
 <div class="card">
 	<div class="card-header">

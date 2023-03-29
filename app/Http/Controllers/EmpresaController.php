@@ -124,8 +124,31 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empresa $empresa)
+    public function destroy($id)
     {
+        if (!$empresa = Empresa::withCount('contatos', 'contratos', 'notasfiscais', 'propostas')->findOrFail($id)){
+            return redirect()->route('empresas.index')->with('success', 'Empresa não encontrada! ');
+        }
+        // Pesquisa relacionados
+        if ($empresa->contatos_count > 0){
+            return redirect()->route('empresas.index')->with('error', 'Erro: Impossível exluir! - Empresa possui Contatos cadastrados! ');
+        }
+
+        if ($empresa->contratos_count > 0){
+            return redirect()->route('empresas.index')->with('error', 'Erro: Impossível exluir! - Empresa possui Contratos cadastrados! ');
+        }
+
+        if ($empresa->notasfiscais_count > 0){
+            return redirect()->route('empresas.index')->with('error', 'Erro: Impossível exluir! - Empresa possui Notas Fiscais cadastradas! ');
+        }
+
+        if ($empresa->propostas_count > 0){
+            return redirect()->route('empresas.index')->with('error', 'Erro: Impossível exluir! - Empresa possui TA/Propostas cadastradas! ');
+        }
+
+
+        //dd($empresa);
+
         $empresa->delete();
 
         return redirect()->route('empresas.index')->with('success', 'Empresa excluida com sucesso.');

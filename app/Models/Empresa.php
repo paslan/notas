@@ -30,5 +30,15 @@ class Empresa extends Model
         return $this->hasMany(Notasfiscais::class);
     }
 
+    public function contatos()
+    {
+        return $this->hasMany(Contato::class);
+    }
+
+    public function propostas()
+    {
+        return $this->hasMany(Proposta::class);
+    }
+
 
 }
