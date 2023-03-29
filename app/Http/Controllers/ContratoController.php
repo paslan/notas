@@ -111,8 +111,12 @@ class ContratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contrato $contrato)
+    public function destroy($id)
     {
+        if (!$contrato = Contrato::findOrFail($id)){
+            return redirect()->route('contratos.index')->with('success', 'Contrato não encontrado! ');
+        }
+
         $contrato->delete();
 
         return redirect()->route('contratos.index')->with('success', 'Contrato excluido com sucesso.');

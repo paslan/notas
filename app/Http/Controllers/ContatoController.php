@@ -120,8 +120,12 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contato $contato)
+    public function destroy($id)
     {
+        if (!$contato = Contato::findOrFail($id)){
+            return redirect()->route('contatos.index')->with('success', 'Contato não encontrado! ');
+        }
+
         $contato->delete();
 
         return redirect()->route('contatos.index')->with('success', 'Contato excluido com sucesso.');

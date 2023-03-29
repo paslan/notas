@@ -132,11 +132,15 @@ class NotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notasfiscais $nota)
+    public function destroy($id)
     {
+        if (!$nota = Notasfiscais::findOrFail($id)){
+            return redirect()->route('notas.index')->with('success', 'Nota Fiscal não encontrada! ');
+        }
+
         $nota->delete();
 
-        return redirect()->route('notas.index')->with('success', 'Nota excluida com sucesso.');
+        return redirect()->route('notas.index')->with('success', 'Nota Fiscal excluida com sucesso.');
 
     }
 

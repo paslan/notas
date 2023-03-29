@@ -132,8 +132,12 @@ class PropostaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proposta $proposta)
+    public function destroy($id)
     {
+        if (!$proposta = Proposta::findOrFail($id)){
+            return redirect()->route('propostas.index')->with('success', 'Proposta não encontrada! ');
+        }
+
         $proposta->delete();
 
         return redirect()->route('propostas.index')->with('success', 'Proposta excluida com sucesso.');
