@@ -19,9 +19,30 @@ class NotasController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Notasfiscais::with(['empresa', 'contrato'])
-                ->where($request->campo == null ? 'notasfiscais.empresa_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-                ->paginate();
+        $pesquisa = $request->search;
+
+        if ($request->campo == 'data_emissao'){
+            $pesquisa = str_replace('/','-', $pesquisa);
+            $pesquisa = date("Y-m-d", strtotime($pesquisa));
+            //dd($pesquisa);
+        }
+
+        if ($request->campo == 'data_vencto'){
+            $pesquisa = str_replace('/','-', $pesquisa);
+            $pesquisa = date("Y-m-d", strtotime($pesquisa));
+            //dd($pesquisa);
+        }
+
+
+        $data = DB::table('notasfiscais')
+        ->join('empresas', 'empresa_id', '=', 'empresas.id')
+        ->join('contratos', 'contrato_id', '=', 'contratos.id')
+        ->where($request->campo == null ? 'notasfiscais.id' :  $request->campo, 'LIKE', "%{$pesquisa}%")
+        ->orderBy('empresas.nome', 'asc')
+        ->select('*')
+        ->selectRaw('contratos.id as id_contratos, empresas.nome as nome_empresas, empresas.id as id_empresas ')
+        ->paginate();
+
         //dd($data);
 
         return view('./notas/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);

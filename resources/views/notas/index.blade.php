@@ -28,9 +28,9 @@
                     <input type="text" name="search" id="search" placeholder="Pesquisar">
                 </div>
                 <div class="col-sm-2">
-                    <select class="form-select" name="campo" id="campo">
-                        <option value="nome">Nome</option>
-                        <option value="objeto">Contrato</option>
+                    <select class="form-select" name="campo" id="campo" onchange="alterainputsearch()">
+                        <option value="empresas.nome">Empresa</option>
+                        <option value="descricao">Contrato</option>
                         <option value="data_emissao">Emissão</option>
                         <option value="data_vencto">Vencto</option>
                     </select>
@@ -57,8 +57,8 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->empresa->nome }}</td>
-						<td style="width:20%">{{ $row->contrato->objeto }}</td>
+						<td style="width:10%">{{ $row->nome_empresas }}</td>
+						<td style="width:20%">{{ $row->descricao }}</td>
 						<td>{{ $row->nronf }}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>

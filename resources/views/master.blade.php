@@ -83,7 +83,29 @@ function changeContrato(response) {
             $('#cnpj').mask('99.999.999/9999-99');
        });
 
+       //Muda tipo de input de text para date na pesquisa
+       function alterainputsearch(){
+        const $select = document.getElementById('campo')
+        document.getElementById('search').type = 'text';
+        if ($select.value == "data_emissao"){
+             document.getElementById('search').type = 'date';
+        }
+        if ($select.value == "data_vencto"){
+             document.getElementById('search').type = 'date';
+        }
+    }
+
+
+
+
     </script>
+
+
+<script>
+    const $select = document.getElementById('opcoes')
+
+
+
 
 
 </body>
