@@ -100,9 +100,14 @@ class ContratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateContratoFormRequest $request, $id)
     {
-        //
+        $contrato = Contrato::find($id);
+        $data = $request->all();
+        $contrato->update($data);
+
+        return redirect()->route('contratos.index')->with('success', 'Contrato atualizado com sucesso!');
+
     }
 
     /**

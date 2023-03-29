@@ -26,8 +26,9 @@
         </div>
     </div>
 	<div class="card-body">
-		<form name="contratoform" id="contratoform" method="post" action="{{ route('contratos.store') }}">
+		<form name="contratoform" id="contratoform" method="post" action="{{ route('contratos.update', $contrato->id) }}">
 			@csrf
+            @method("PUT")
 			<div class="row mb-2">
                 <div class="row">
                     <label class="col-12 col-label-form">Empresa</label>
@@ -81,7 +82,7 @@
 					<input type="date" name="inicio_vigencia" class="form-control" value="{{ $contrato->inicio_vigencia }}"/>
 				</div>
 				<div class="col-sm-2">
-					<input type="date" name="fim_vigencia" class="form-control" value="{{ $contrato->final_vigencia }}"/>
+					<input type="date" name="fim_vigencia" class="form-control" value="{{ $contrato->fim_vigencia }}"/>
 				</div>
 				<div class="col-sm-2">
 					<input type="text" name="valor" class="form-control" placeholder="Valor" value="{{ $contrato->valor }}" />
