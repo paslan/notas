@@ -94,41 +94,6 @@
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
-        integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
-<script>
-    function changeCity(response) {
-        //alert(response.value);
-    $.ajax({
-        url: $(response).data('url'),
-        type: 'post',
-        data: {_method: 'post', _token: $(response).data('token'), estado_id: response.value},
-        success: function(res) {
-            $("#cidade_id").empty();
-            $('#cidade_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
-            $.each( res, function(a, b) {
-                $('#cidade_id').append($('<option>', {value: b['id'], text: b['nome']}));
-
-            });
-        },
-        error: function(){
-            console.log('error');
-        },
-    });
-    }
-
-    function maiuscula(z){
-        v = z.value.toUpperCase();
-        z.value = v;
-    }
-
-    $(document).ready(function($){
-        $('#cnpj').mask('99.999.999/9999-99');
-   });
-
-</script>
 
 @endsection('content')
 

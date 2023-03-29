@@ -38,6 +38,7 @@ class NotasController extends Controller
 
         $empresas = Empresa::orderBy('nome')->get();
         $contratos = Contrato::all()->where('empresa_id', '=', $emp);
+        //dd($empresas);
         return view('./notas/create', [
             'empresas' => $empresas,
             'contratos' => $contratos,

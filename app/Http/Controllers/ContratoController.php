@@ -129,6 +129,7 @@ class ContratoController extends Controller
     }
 
     public function encontraContratos(Request $request){
+        //dd($request);
         $contratos = Contrato::all();
         return $contratos->where('empresa_id', '=', $request['empresa_id']);
     }

@@ -74,35 +74,6 @@
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
-        integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
-
-        <script>
-            function changeContrato(response) {
-                //alert(response.value);
-            $.ajax({
-                url: $(response).data('url'),
-                type: 'post',
-                data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
-                success: function(res) {
-                    $("#contrato_id").empty();
-                    $('#contrato_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
-                    $.each( res, function(a, b) {
-                        $('#contrato_id').append($('<option>', {value: b['id'], text: b['objeto']}));
-
-                    });
-                },
-                error: function(){
-                    console.log('error');
-                },
-            });
-            }
-
-        </script>
-
-
 @endsection('content')
 
 
