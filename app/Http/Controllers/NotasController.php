@@ -40,7 +40,7 @@ class NotasController extends Controller
         ->where($request->campo == null ? 'notasfiscais.id' :  $request->campo, 'LIKE', "%{$pesquisa}%")
         ->orderBy('empresas.nome', 'asc')
         ->select('*')
-        ->selectRaw('contratos.id as id_contratos, empresas.nome as nome_empresas, empresas.id as id_empresas ')
+        ->selectRaw('notasfiscais.id as id_notas, contratos.id as id_contratos, empresas.nome as nome_empresas, empresas.id as id_empresas ')
         ->paginate();
 
         //dd($data);
@@ -94,10 +94,10 @@ class NotasController extends Controller
      */
     public function show(Notasfiscais $nota)
     {
-                //dd($notas);
                 $empresa = Empresa::find($nota->empresa_id);
                 $contrato = Contrato::find($nota->contrato_id);
-                return view('./notas/show', [
+                //dd($empresa);
+                return view('notas.show', [
                     'nota'      => $nota,
                     'empresa'   => $empresa,
                     'contrato'  => $contrato,

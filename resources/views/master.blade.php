@@ -24,89 +24,69 @@
 
     <script>
 
-    </script>
+        function changeContrato(response) {
+                    //alert(response.value);
+                $.ajax({
+                    url: $(response).data('url'),
+                    type: 'post',
+                    data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
+                    success: function(res) {
+                        $("#contrato_id").empty();
+                        $('#contrato_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                        $.each( res, function(a, b) {
+                            $('#contrato_id').append($('<option>', {value: b['id'], text: b['objeto']}));
 
-
-
-
-
-
-    <script>
-
-function changeContrato(response) {
-            //alert(response.value);
-        $.ajax({
-            url: $(response).data('url'),
-            type: 'post',
-            data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
-            success: function(res) {
-                $("#contrato_id").empty();
-                $('#contrato_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
-                $.each( res, function(a, b) {
-                    $('#contrato_id').append($('<option>', {value: b['id'], text: b['objeto']}));
-
+                        });
+                    },
+                    error: function(){
+                        console.log('error');
+                    },
                 });
-            },
-            error: function(){
-                console.log('error');
-            },
-        });
-        }
+                }
 
 
-        function changeCity(response) {
-            //alert(response.value);
-            $.ajax({
-                url: $(response).data('url'),
-                type: 'post',
-                data: {_method: 'post', _token: $(response).data('token'), estado_id: response.value},
-                success: function(res) {
-                    $("#cidade_id").empty();
-                    $('#cidade_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
-                    $.each( res, function(a, b) {
-                        $('#cidade_id').append($('<option>', {value: b['id'], text: b['nome']}));
+                function changeCity(response) {
+                    //alert(response.value);
+                    $.ajax({
+                        url: $(response).data('url'),
+                        type: 'post',
+                        data: {_method: 'post', _token: $(response).data('token'), estado_id: response.value},
+                        success: function(res) {
+                            $("#cidade_id").empty();
+                            $('#cidade_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                            $.each( res, function(a, b) {
+                                $('#cidade_id').append($('<option>', {value: b['id'], text: b['nome']}));
 
+                            });
+                        },
+                        error: function(){
+                            console.log('error');
+                        },
                     });
-                },
-                error: function(){
-                    console.log('error');
-                },
+                }
+
+                function maiuscula(z){
+                    v = z.value.toUpperCase();
+                    z.value = v;
+                }
+
+                $(document).ready(function($){
+                    $('#cnpj').mask('99.999.999/9999-99');
             });
-        }
 
-        function maiuscula(z){
-            v = z.value.toUpperCase();
-            z.value = v;
-        }
-
-        $(document).ready(function($){
-            $('#cnpj').mask('99.999.999/9999-99');
-       });
-
-       //Muda tipo de input de text para date na pesquisa
-       function alterainputsearch(){
-        const $select = document.getElementById('campo')
-        document.getElementById('search').type = 'text';
-        if ($select.value == "data_emissao"){
-             document.getElementById('search').type = 'date';
-        }
-        if ($select.value == "data_vencto"){
-             document.getElementById('search').type = 'date';
-        }
-    }
-
-
-
+            //Muda tipo de input de text para date na pesquisa
+            function alterainputsearch(){
+                const $select = document.getElementById('campo')
+                document.getElementById('search').type = 'text';
+                if ($select.value == "data_emissao"){
+                    document.getElementById('search').type = 'date';
+                }
+                if ($select.value == "data_vencto"){
+                    document.getElementById('search').type = 'date';
+                }
+            }
 
     </script>
-
-
-<script>
-    const $select = document.getElementById('opcoes')
-
-
-
-
 
 </body>
 </html>

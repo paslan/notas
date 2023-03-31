@@ -56,7 +56,7 @@
 				@foreach($data as $row)
 
 					<tr>
-						<td scope="row">{{ $row->id }}</td>
+						<td scope="row">{{ $row->id_notas }}</td>
 						<td style="width:10%">{{ $row->nome_empresas }}</td>
 						<td style="width:20%">{{ $row->descricao }}</td>
 						<td>{{ $row->nronf }}</td>
@@ -66,8 +66,8 @@
 							<form method="post" action="{{ route('notas.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('notas.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
-								<a href="{{ route('notas.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
+								<a href="{{ route('notas.show', $row->id_notas) }}" class="btn btn-outline-primary btn-sm">View</a>
+								<a href="{{ route('notas.edit', $row->id_notas) }}" class="btn btn-outline-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>

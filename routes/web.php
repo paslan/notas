@@ -27,6 +27,12 @@ Route::get('/', function () {
     return view('index');
 })->name('menu');
 
+Route::get('/dashboard', function () {
+    return "Aqui";
+    return view('dashboard');
+})->name('dashboard');
+
+
 Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
 
 Route::get('notas/create/{emp?}', [NotasController::class, 'create'])->name('notas.createemp');
