@@ -7,9 +7,11 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\NotasController;
+use App\Http\Controllers\TesteController;
 use App\Models\Notasfiscais;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,10 @@ Route::get('/', function () {
     return view('index');
 })->name('menu');
 
-Route::get('/dashboard', function () {
-    return "Aqui";
-    return view('dashboard');
-})->name('dashboard');
+Route::get('pdf/{id}', [EmpresaController::class, 'teste']);
 
+
+Route::get('teste/pdf', [TesteController::class, 'createPDF'])->name('teste.pdf');
 
 Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
 

@@ -11,6 +11,8 @@ use App\Models\Notasfiscais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use PDF;
+
 class EmpresaController extends Controller
 {
     /**
@@ -175,5 +177,11 @@ class EmpresaController extends Controller
         ]);
     }
 
+    public function teste (){
+        $data = Empresa::all();
+        //dd($data);
+        $pdf = PDF::Loadview('view-pdf', compact('data'));
+        return $pdf->setPaper('a4')->stream('ListaEmpresas');
+    }
 
 }
