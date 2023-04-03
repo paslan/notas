@@ -42,6 +42,7 @@
 				<label class="col-sm-2 col-label-form">Nro. NF</label>
 				<label class="col-sm-2 col-label-form">Emissão</label>
 				<label class="col-sm-2 col-label-form">Vencto</label>
+				<label class="col-sm-1 col-label-form">Mês/Ano</label>
                 <div class="row"></div>
 				<div class="col-sm-2">
                     {{ $nota->nronf }}
@@ -51,6 +52,9 @@
 				</div>
                 <div class="col-sm-2">
                     {{ date( 'd/m/Y' , strtotime($nota->data_vencto))}}
+				</div>
+                <div class="col-sm-2">
+                    {{ $nota->mes_competencia . '/' . $nota->ano_competencia }}
 				</div>
 			</div>
 		</form>

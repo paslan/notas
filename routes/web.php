@@ -29,7 +29,7 @@ Route::get('/', function () {
     return view('index');
 })->name('menu');
 
-Route::get('pdf/{id}', [EmpresaController::class, 'teste']);
+Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'teste']);
 
 
 Route::get('teste/pdf', [TesteController::class, 'createPDF'])->name('teste.pdf');

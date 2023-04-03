@@ -69,6 +69,12 @@
                 <div class="col-sm-2">
 					<input type="date" name="data_vencto" class="form-control" value="{{ $nota->data_vencto }}"/>
 				</div>
+                <div class="col-sm-1">
+					<input type="text" name="mes_competencia" class="form-control" value="{{ $nota->mes_competencia }}"/>
+				</div>
+                <div class="col-sm-1">
+					<input type="text" name="ano_competencia" class="form-control" value="{{ $nota->ano_competencia }}"/>
+				</div>
 			</div>
 			<div class="text-center">
                 <input type="hidden" name="nota_id" value="{{ $nota->id }}" />

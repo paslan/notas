@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('nronf');
             $table->date('data_emissao');
             $table->date('data_vencto');
+            $table->tinyInteger('mes_competencia');
+            $table->tinyInteger('ano_competencia');
             $table->timestamps();
         });
     }

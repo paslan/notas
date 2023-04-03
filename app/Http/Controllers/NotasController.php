@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use PDF;
+
+
 class NotasController extends Controller
 {
     /**
@@ -166,10 +169,18 @@ class NotasController extends Controller
 
     }
 
-    /**
-     * Get the empresa that owns the NotasController
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    public function teste ($id, $emp, $tipo){
+
+        $data = DB::table('notasfiscais')
+                ->where('nronf', $id)
+                ->where('empresa_id', $emp)
+                ->join('empresas', 'empresa_id', '=', 'empresas.id')
+                ->first();
+        //dd($data);
+        $pdf = PDF::Loadview('capas', compact('data', 'tipo'));
+        return view('capas', compact('data', 'tipo'));
+        //return $pdf->setPaper('a4', 'landscape')->stream('ListaEmpresas');
+        return $pdf->setPaper('a4')->stream('Capas');
+    }
 
 }

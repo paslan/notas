@@ -19,6 +19,8 @@ class Notasfiscais extends Model
         'nronf',
         'data_emissao',
         'data_vencto',
+        'mes_competencia',
+        'ano_competencia',
     ];
 
     public function empresa(){
