@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('notas.index') }}">Notas Fiscais</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('processos.index') }}">Processos</a>
+                </li>
                 </ul>
             </div>
             </div>

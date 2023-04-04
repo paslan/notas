@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateNotasFormRequest;
 use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
+use App\Models\Processo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -84,6 +85,11 @@ class NotasController extends Controller
         //dd($request -> assinado);
 
         $nota = Notasfiscais::create($data);
+        //dd($nota->id);
+
+        $processo = Processo::create([
+            'notasfiscais_id' => $nota->id,
+        ]);
 
         return redirect()->route('notas.index')->with('success', 'Nota Fiscal adicionada com sucesso.');
 
@@ -180,7 +186,8 @@ class NotasController extends Controller
         $pdf = PDF::Loadview('capas', compact('data', 'tipo'));
         return view('capas', compact('data', 'tipo'));
         //return $pdf->setPaper('a4', 'landscape')->stream('ListaEmpresas');
-        return $pdf->setPaper('a4')->stream('Capas');
+        //return $pdf->setPaper('a4')->stream('Capas');
     }
+
 
 }

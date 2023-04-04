@@ -27,8 +27,9 @@ class Notasfiscais extends Model
         return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
     }
 
-    public function contrato(){
-        return $this->belongsTo(Contrato::class, 'contrato_id', 'id');
+    public function processo(): HasOne
+    {
+        return $this->hasOne(Processo::class);
     }
 
 

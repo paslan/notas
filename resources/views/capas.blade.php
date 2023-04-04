@@ -34,7 +34,7 @@
     <table class="tabela-cab">
         <tr>
             <td><img src="/images/logo-hmb.png" alt="" width="50" height="50"></td>
-            <td align="center">Hospital Municipal de Barueri – Dr. Francisco Moran
+            <td align="center">Hospital Municipal de Barueri - Dr. Francisco Moran
                 SPDM <br> Associação Paulista para o Desenvolvimento da Medicina
             </td>
             <td><img src="/images/logo-spdm.png" alt="" width="50" height="50"></td>

@@ -7,6 +7,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\NotasController;
+use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\TesteController;
 use App\Models\Notasfiscais;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -56,3 +57,6 @@ Route::resource('propostas', PropostaController::class);
 Route::resource('contatos', ContatoController::class);
 
 Route::resource('notas', NotasController::class);
+
+Route::resource('processos', ProcessoController::class);
+
