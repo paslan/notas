@@ -77,6 +77,7 @@
 				</div>
 			</div>
 			<div class="text-center">
+                <input type="hidden" name="competencia" value="{{ $nota->competencia }}" />
                 <input type="hidden" name="nota_id" value="{{ $nota->id }}" />
 				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>

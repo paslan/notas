@@ -24,6 +24,7 @@ class Notasfiscais extends Model
         'data_vencto',
         'mes_competencia',
         'ano_competencia',
+        'competencia',
     ];
 
     public function empresa(){

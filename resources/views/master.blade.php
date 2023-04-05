@@ -45,6 +45,29 @@
                 }
 
 
+                function changeNotas(response) {
+                    //alert(response.value);
+                $.ajax({
+                    url: $(response).data('url'),
+                    type: 'post',
+                    data: {_method: 'post', _token: $(response).data('token'), empresa_id: response.value},
+                    success: function(res) {
+                        $("#notas_id").empty();
+                        $('#notas_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                        $.each( res, function(a, b) {
+                            $('#notas_id').append($('<option>', {value: b['id'], text: b['nronf']}));
+
+                        });
+                    },
+                    error: function(){
+                        console.log('error');
+                    },
+                });
+                }
+
+
+                
+
                 function changeCity(response) {
                     //alert(response.value);
                     $.ajax({

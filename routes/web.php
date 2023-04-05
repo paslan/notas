@@ -30,7 +30,7 @@ Route::get('/', function () {
     return view('index');
 })->name('menu');
 
-Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'teste']);
+Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'gerapdf'])->name('notas.pdf');
 
 
 Route::get('teste/pdf', [TesteController::class, 'createPDF'])->name('teste.pdf');
@@ -43,6 +43,7 @@ Route::post('encontrar-cidades', [CidadeController::class, 'encontraCidades']);
 
 Route::post('encontrar-contratos', [ContratoController::class, 'encontraContratos']);
 
+Route::post('encontrar-notas', [NotasController::class, 'encontraNotas']);
 
 Route::resource('estados', EstadoController::class);
 

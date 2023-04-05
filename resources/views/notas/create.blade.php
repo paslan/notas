@@ -88,6 +88,9 @@
                         <option value="{{ date("Y") }}" >{{ date("Y")+1 }}</option>
                     </select>
 				</div>
+                <div class="col-sm-2">
+					<input type="text" name="competencia" class="form-control" value="{{ old('competencia') }}"/>
+				</div>
 			</div>
 			<div class="text-center">
 				<input type="submit" class="btn btn-outline-primary" value="Add" />

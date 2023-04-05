@@ -16,6 +16,7 @@ class Processo extends Model
 
     protected $fillable = [
         'notasfiscais_id',
+        'empresa_id',
         'capa_C',
         'capa_I',
         'capa_G',

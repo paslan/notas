@@ -83,15 +83,14 @@ class NotasController extends Controller
     public function store(StoreUpdateNotasFormRequest $request)
     {
 
+        
         $data = $request->all();
-        //dd($request -> assinado);
+        $data ['competencia'] = substr(($data ['mes_competencia']+100),-2) . '/' . $data ['ano_competencia'];
+        
+        //dd($data['competencia']);
 
         $nota = Notasfiscais::create($data);
         //dd($nota->id);
-
-        $processo = Processo::create([
-            'notasfiscais_id' => $nota->id,
-        ]);
 
         return redirect()->route('notas.index')->with('success', 'Nota Fiscal adicionada com sucesso.');
 
@@ -150,6 +149,8 @@ class NotasController extends Controller
     {
         $data = $request->all();
 
+        $data ['competencia'] = substr(($data ['mes_competencia']+100),-2) . '/' . $data ['ano_competencia'];
+
         //dd($request->nota_id);
 
         Notasfiscais::findOrFail($request->nota_id)->update($data);
@@ -186,7 +187,7 @@ class NotasController extends Controller
 
     }
 
-    public function teste ($id, $emp, $tipo){
+    public function geraPDF ($id, $emp, $tipo){
 
         $data = DB::table('notasfiscais')
                 ->where('nronf', $id)
@@ -200,5 +201,10 @@ class NotasController extends Controller
         //return $pdf->setPaper('a4')->stream('Capas');
     }
 
+    public function encontraNotas(Request $request){
+        //dd($request);
+        $notas = Notasfiscais::all();
+        return $notas->where('empresa_id', '=', $request['empresa_id']);
+    }
 
 }

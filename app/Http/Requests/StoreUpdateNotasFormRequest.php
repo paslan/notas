@@ -24,11 +24,13 @@ class StoreUpdateNotasFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'empresa_id'    => 'required',
-            'contrato_id'   => 'required',
-            'nronf'         => 'required',
-            'data_emissao'  => 'required',
-            'data_vencto'   => 'required',
+            'empresa_id'        => 'required',
+            'contrato_id'       => 'required',
+            'nronf'             => 'required',
+            'data_emissao'      => 'required',
+            'data_vencto'       => 'required',
+            'mes_competencia'   => 'required',
+            'ano_competencia'   => 'required',
         ];
     }
 }

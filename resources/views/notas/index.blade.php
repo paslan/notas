@@ -33,6 +33,7 @@
                         <option value="descricao">Contrato</option>
                         <option value="data_emissao">Emissão</option>
                         <option value="data_vencto">Vencto</option>
+                        <option value="competencia">Vencto</option>
                     </select>
                 </div>
             <div class="col-sm-2">
@@ -50,6 +51,7 @@
 				<th scope="col">Nro NF</th>
 				<th scope="col">Emissão</th>
 				<th scope="col">Vencto</th>
+				<th scope="col">Competencia</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -62,6 +64,7 @@
 						<td>{{ $row->nronf }}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_emissao))}}</td>
 						<td>{{ date( 'd/m/Y' , strtotime($row->data_vencto))}}</td>
+						<td>{{ $row->competencia }}</td>
 						<td>
 							<form method="post" action="{{ route('notas.destroy', $row->id) }}">
 								@csrf

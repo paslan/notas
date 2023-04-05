@@ -54,7 +54,7 @@
                     {{ date( 'd/m/Y' , strtotime($nota->data_vencto))}}
 				</div>
                 <div class="col-sm-2">
-                    {{ $nota->mes_competencia . '/' . $nota->ano_competencia }}
+                    {{ $nota->competencia }}
 				</div>
 			</div>
 		</form>
