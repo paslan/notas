@@ -16,15 +16,16 @@ return new class extends Migration
         Schema::create('processos', function (Blueprint $table) {
             $table->id();
             $table->foreignid('notasfiscais_id')->constrained();
-            $table->boolean('capa_C')->nullable();
-            $table->boolean('capa_I')->nullable();
-            $table->boolean('capa_G')->nullable();
-            $table->boolean('capa_T')->nullable();
-            $table->boolean('capa_P')->nullable();
-            $table->boolean('grafico1')->nullable();
-            $table->boolean('check_list')->nullable();
-            $table->boolean('conrole_interno')->nullable();
-            $table->boolean('contrato')->nullable();
+            $table->foreignId('empresa_id')->constrained();
+            $table->timestamp('capa_C')->nullable();
+            $table->timestamp('capa_I')->nullable();
+            $table->timestamp('capa_G')->nullable();
+            $table->timestamp('capa_T')->nullable();
+            $table->timestamp('capa_P')->nullable();
+            $table->timestamp('grafico1')->nullable();
+            $table->timestamp('check_list')->nullable();
+            $table->timestamp('conrole_interno')->nullable();
+            $table->timestamp('contrato')->nullable();
             $table->timestamps();
         });
     }

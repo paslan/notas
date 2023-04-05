@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Processo extends Model
 {
@@ -26,9 +27,9 @@ class Processo extends Model
         'contrato',
     ];
 
-    public function nota(): HasOne
+    public function nota(): BelongsTo
     {
-        return $this->hasOne(Nota::class);
+        return $this->belongsTo(Notafiscal::class);
     }
 
 }

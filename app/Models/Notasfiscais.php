@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Notasfiscais extends Model
 {
@@ -27,9 +30,9 @@ class Notasfiscais extends Model
         return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
     }
 
-    public function processo(): HasOne
+    public function processo(): HasMany
     {
-        return $this->hasOne(Processo::class);
+        return $this->hasMany(Processo::class);
     }
 
 

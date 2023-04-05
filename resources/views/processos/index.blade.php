@@ -62,7 +62,6 @@
 								@method('DELETE')
 								<a href="{{ route('processos.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
 								<a href="{{ route('processos.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
-								<a href="{{ route('processos.notas', $row->id) }}" class="btn btn-outline-info btn-sm">NF</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
 							</form>
 						</td>

@@ -7,6 +7,8 @@ use App\Models\Contrato;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
 use App\Models\Processo;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -165,9 +167,18 @@ class NotasController extends Controller
      */
     public function destroy($id)
     {
-        if (!$nota = Notasfiscais::findOrFail($id)){
+
+        if (!$nota = Notasfiscais::withCount('processo')->findOrFail($id)){
             return redirect()->route('notas.index')->with('success', 'Nota Fiscal não encontrada! ');
         }
+
+        dd($nota->processos_count);
+
+        // Pesquisa relacionados
+        if ($nota->processos_count > 0){
+            return redirect()->route('notas.index')->with('error', 'Erro: Impossível exluir! - Nota Fiscal possui processos cadastrados! ');
+        }
+        
 
         $nota->delete();
 
@@ -183,7 +194,7 @@ class NotasController extends Controller
                 ->join('empresas', 'empresa_id', '=', 'empresas.id')
                 ->first();
         //dd($data);
-        $pdf = PDF::Loadview('capas', compact('data', 'tipo'));
+        //$pdf = PDF::Loadview('capas', compact('data', 'tipo'));
         return view('capas', compact('data', 'tipo'));
         //return $pdf->setPaper('a4', 'landscape')->stream('ListaEmpresas');
         //return $pdf->setPaper('a4')->stream('Capas');

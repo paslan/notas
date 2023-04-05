@@ -9,7 +9,7 @@ class ProcessoController extends Controller
 {
     public function index(Request $request)
     {
-        //dd($request->campo);
+        //dd("Aqui");
 
 
         $data = DB::table('processos')

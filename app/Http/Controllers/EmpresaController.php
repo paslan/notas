@@ -131,6 +131,8 @@ class EmpresaController extends Controller
         if (!$empresa = Empresa::withCount('contatos', 'contratos', 'notasfiscais', 'propostas')->findOrFail($id)){
             return redirect()->route('empresas.index')->with('success', 'Empresa não encontrada! ');
         }
+
+        //dd($empresa->contratos_count);
         // Pesquisa relacionados
         if ($empresa->contatos_count > 0){
             return redirect()->route('empresas.index')->with('error', 'Erro: Impossível exluir! - Empresa possui Contatos cadastrados! ');
