@@ -31,9 +31,9 @@ class Notasfiscais extends Model
         return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
     }
 
-    public function processo(): HasMany
+    public function processo(): HasOne
     {
-        return $this->hasMany(Processo::class);
+        return $this->hasOne(Processo::class);
     }
 
 

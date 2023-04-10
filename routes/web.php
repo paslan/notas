@@ -10,6 +10,7 @@ use App\Http\Controllers\NotasController;
 use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\TesteController;
 use App\Models\Notasfiscais;
+use App\Models\Processo;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,8 @@ Route::post('encontrar-cidades', [CidadeController::class, 'encontraCidades']);
 Route::post('encontrar-contratos', [ContratoController::class, 'encontraContratos']);
 
 Route::post('encontrar-notas', [NotasController::class, 'encontraNotas']);
+
+Route::get('processos/capa/{id}/{tipo?}', [ProcessoController::class, 'capas'])->name('processos.capas');
 
 Route::resource('estados', EstadoController::class);
 

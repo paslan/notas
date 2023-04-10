@@ -30,7 +30,7 @@ class Processo extends Model
 
     public function nota(): BelongsTo
     {
-        return $this->belongsTo(Notafiscal::class);
+        return $this->belongsTo(Notasfiscais::class);
     }
 
 }

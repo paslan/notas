@@ -51,8 +51,10 @@
             <div class="row mb-12">
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">Capas</span>
-                        <button class="btn btn-outline-primary" type="button">Cobrança</button>
-                        <input type="text" readonly name="capa_c" id="capa_c" class="form-control" value="{{ old('capa_c') }}">
+                        <a href="{{ route('notas.capas', ) }}" target="_blank">
+                            <button class="btn btn-outline-primary" type="button">Cobrança</button>
+                        </a>   
+                         <input type="text" readonly name="capa_c" id="capa_c" class="form-control" value="{{ old('capa_c') }}">
                         <button class="btn btn-outline-primary" type="button">Controle</button>
                         <input type="text" readonly name="capa_i" id="capa_i" class="form-control" value="{{ old('capa_i') }}">
                         <button class="btn btn-outline-primary" type="button">Contrato</button>

@@ -86,11 +86,21 @@ class NotasController extends Controller
         
         $data = $request->all();
         $data ['competencia'] = substr(($data ['mes_competencia']+100),-2) . '/' . $data ['ano_competencia'];
-        
+
         //dd($data['competencia']);
 
         $nota = Notasfiscais::create($data);
         //dd($nota->id);
+
+        //Cria processo One-to-One
+        //$processo = Notasfiscais::find($nota->id)->processo;
+        //dd($processo);
+
+        if (!$processo = Notasfiscais::find($nota->id)->processo) {
+            $processo = $nota->processo()->create([
+                'empresa_id'    => $nota->empresa_id,
+            ]);
+        };
 
         return redirect()->route('notas.index')->with('success', 'Nota Fiscal adicionada com sucesso.');
 
@@ -106,6 +116,7 @@ class NotasController extends Controller
     {
                 $empresa = Empresa::find($nota->empresa_id);
                 $contrato = Contrato::find($nota->contrato_id);
+
                 //dd($empresa);
                 return view('notas.show', [
                     'nota'      => $nota,
@@ -169,18 +180,16 @@ class NotasController extends Controller
     public function destroy($id)
     {
 
-        if (!$nota = Notasfiscais::withCount('processo')->findOrFail($id)){
+
+        
+        if (!$nota = Notasfiscais::findOrFail($id)){
             return redirect()->route('notas.index')->with('success', 'Nota Fiscal não encontrada! ');
         }
 
-        dd($nota->processos_count);
-
-        // Pesquisa relacionados
-        if ($nota->processos_count > 0){
-            return redirect()->route('notas.index')->with('error', 'Erro: Impossível exluir! - Nota Fiscal possui processos cadastrados! ');
+        if ($processo = Processo::where('notasfiscais_id', '=', $id)){
+            return redirect()->route('notas.index')->with('success', 'Erro: Impossível exluir! - Nota Fiscal possui processos cadastrados! ');
         }
         
-
         $nota->delete();
 
         return redirect()->route('notas.index')->with('success', 'Nota Fiscal excluida com sucesso.');
@@ -206,5 +215,6 @@ class NotasController extends Controller
         $notas = Notasfiscais::all();
         return $notas->where('empresa_id', '=', $request['empresa_id']);
     }
+
 
 }

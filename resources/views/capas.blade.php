@@ -23,7 +23,7 @@
               font-weight: bold;
     }
     .cabecalho { font-size: 15px; }
-    .tipo { font-size: 36px;
+    .tipo { font-size: 34px;
             font-weight: bold;
     }
     </style>
@@ -48,37 +48,41 @@
                 <br><br>
             </td>
         </tr>
-        <tr class="corpo"><td colspan="3" width="100%" align="center">Empresa: {{ $data->razao_social }}</td></tr>
+        <tr class="corpo"><td colspan="3" width="100%" align="center"></td></tr>
         <tr>
             <td align="center" colspan="3" width="100%">
-                <br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br>
             </td>
         </tr>
         <tr>
             <td class="tipo" colspan="3" width="100%" align="center">
                 @if ($tipo == "C")
-                    Relatório de Cobrança<br><br>NF: {{ $data->nronf }}
+                    NOTA DE CONTRATO PERTINENTE AO PERÍODO DE {{ $nota->competencia  }}<br><br>
+                    EMPRESA: {{ $empresa->razao_social }} <br><br>
+                    NF: {{ $nota->nronf }} <br><br><br><br>
+                    Nota Fiscal
+                    <br><br><br><br><br><br><br><br><br><br>
                 @endif
                 @if ($tipo == "I")
+                    EMPRESA: {{ $empresa->razao_social }} <br><br><br><br>
                     Relatório de <br>Controle Interno
+                    <br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br>
                 @endif
                 @if ($tipo == "G")
                     Gráfico de Pagamento
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br>
                 @endif
                 @if ($tipo == "T")
                     Contrato
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br>
                 @endif
                 @if ($tipo == "P")
                     Check List para Pagamento<br>de Contrato
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 @endif
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" width="100%">
-                <br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br>
-                <br>
             </td>
         </tr>
     </table>

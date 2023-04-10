@@ -48,6 +48,11 @@
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">NF</th>
+				<th scope="col">C</th>
+				<th scope="col">I</th>
+				<th scope="col">G</th>
+				<th scope="col">T</th>
+				<th scope="col">P</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -55,11 +60,23 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->notasfiscais_id }}</td>
+						<td scope="row">{{ $row->notasfiscais_id }}</td>
+						<td style="width:9%">{{ $row->capa_C }}</td>
+						<td style="width:9%">{{ $row->capa_I }}</td>
+						<td style="width:9%">{{ $row->capa_G }}</td>
+						<td style="width:9%">{{ $row->capa_T }}</td>
+						<td style="width:9%">{{ $row->capa_P }}</td>
 						<td>
 							<form method="post" action="{{ route('processos.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
+								<div class="btn-group" role="group" aria-label="Capas">
+									<a href="{{ url("processos/capa/{$row->id}/C") }}" target="blank" class="btn btn-outline-secondary btn-sm">Cobrança</a>
+									<a href="{{ url("processos/capa/{$row->id}/I") }}" target="blank" class="btn btn-outline-secondary btn-sm">Interno</a>
+									<a href="{{ url("processos/capa/{$row->id}/G") }}" target="blank" class="btn btn-outline-secondary btn-sm">Gráfico</a>
+									<a href="{{ url("processos/capa/{$row->id}/T") }}" target="blank" class="btn btn-outline-secondary btn-sm">Contrato</a>
+									<a href="{{ url("processos/capa/{$row->id}/P") }}" target="blank" class="btn btn-outline-secondary btn-sm">Pagamento</a>
+								</div>
 								<a href="{{ route('processos.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
 								<a href="{{ route('processos.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
