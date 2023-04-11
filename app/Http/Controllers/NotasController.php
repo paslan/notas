@@ -216,5 +216,12 @@ class NotasController extends Controller
         return $notas->where('empresa_id', '=', $request['empresa_id']);
     }
 
+    public function chartnf($id){
+        $notas = Notasfiscais::find($id);
+        //dd($notas);
+        return view('chart-nf',[
+            'notas' => $notas,
+        ]);
+    }
 
 }

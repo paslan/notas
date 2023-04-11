@@ -31,7 +31,10 @@ Route::get('/', function () {
     return view('index');
 })->name('menu');
 
+
 Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'gerapdf'])->name('notas.pdf');
+
+Route::get('chart-nf/{id}', [NotasController::class, 'chartnf'])->name('notas.chartnf');
 
 
 Route::get('teste/pdf', [TesteController::class, 'createPDF'])->name('teste.pdf');
