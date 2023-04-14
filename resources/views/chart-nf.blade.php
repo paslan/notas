@@ -138,7 +138,7 @@ td
                           </td>
                         @endif
                       @endforeach
-                      <td>0.00</td>
+                      <td>{{ number_format((float)$total, 2, '.', '')  }}</td>
                     </tr>
                   </table>
                 </td>

@@ -244,10 +244,11 @@ class NotasController extends Controller
 
         //dd($result);
 
-        
+        $total = 0;
          foreach ($notas as $key => $value)
         {
             $result[$value->mes] = [$value->mes, floatval($value->total_valor)];
+            $total += floatval($value->total_valor);
             ++$key;
         }
 
@@ -259,6 +260,7 @@ class NotasController extends Controller
             'empresa'   => $empresa,
             'contrato'  => $contrato,
             'result'    => $result,
+            'total'     => $total,
         ]);
     }
 
