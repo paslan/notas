@@ -12,9 +12,10 @@ use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Khill\Lavacharts\Lavacharts;
 
 use PDF;
-
+use Termwind\Components\Raw;
 
 class NotasController extends Controller
 {
@@ -217,11 +218,48 @@ class NotasController extends Controller
     }
 
     public function chartnf($id){
-        $notas = Notasfiscais::find($id);
+        $nota = Notasfiscais::find($id);
+        $empresa = Empresa::find($nota->empresa_id);
+
+        $notas = DB::table('notasfiscais')
+                ->select(
+                    DB::raw("mes_competencia as mes"),
+                    DB::raw("sum(valor) as total_valor"))
+                ->where('ano_competencia', '=', $nota->ano_competencia)
+                ->where('empresa_id', '=', $nota->empresa_id)
+                ->groupBy(DB::raw("mes_competencia"))
+                ->get();
+        
         //dd($notas);
+
+
+        //com Googlechart
+        $result[] = ['Mes', 'Valor'];
+
+        for ($i=1; $i<=12 ; ++$i) 
+        {
+            $result[$i] = [$i, 0.00];
+        }
+
+        //dd($result);
+
+         foreach ($notas as $key => $value)
+        {
+            $result[$value->mes] = [$value->mes, floatval($value->total_valor)];
+            ++$key;
+        }
+
+        
+        //dd($result);
+
         return view('chart-nf',[
-            'notas' => $notas,
+            'notas'     => $notas,
+            'empresa'   => $empresa,
+            'result'    => $result,
         ]);
     }
+
+
+
 
 }

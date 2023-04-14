@@ -66,16 +66,16 @@ class ProcessoController extends Controller
             $processo->capa_G = $datetime;
         }
         if ($tipo == 'T') {
-            $processo->capa_G = $datetime;
+            $processo->capa_T = $datetime;
         }
         if ($tipo == 'P') {
-            $processo->capa_G = $datetime;
+            $processo->capa_P = $datetime;
         }
 
         $processo->save();
 
 
-        //dd($empresa);
+        //dd($nota->competencia);
 
         //$pdf = PDF::Loadview('capas', compact('data', 'tipo'));
         return view('capas', compact('processo', 'empresa', 'nota', 'tipo'));

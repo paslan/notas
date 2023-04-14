@@ -36,7 +36,6 @@ Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'gerapdf'])->name('
 
 Route::get('chart-nf/{id}', [NotasController::class, 'chartnf'])->name('notas.chartnf');
 
-
 Route::get('teste/pdf', [TesteController::class, 'createPDF'])->name('teste.pdf');
 
 Route::get('/notas_empresa/{id}', [EmpresaController::class, 'notas'])->name('empresas.notas');
