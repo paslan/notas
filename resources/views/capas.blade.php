@@ -1,32 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-    .tabela-cab
-    {
-        border: none;
-        width: 100%;
-    }
-    .tabela-footer
-    {
-        border: none;
-        width: 100%;
-    }
-    .tabela-corpo
-    {
-        background:white;border:4px solid black;
-        width:100%;
-    }
-    td {border:none}
-    .corpo { font-size: 20px; }
-    .titulo { font-size: 20px;
-              font-weight: bold;
-    }
-    .cabecalho { font-size: 15px; }
-    .tipo { font-size: 34px;
-            font-weight: bold;
-    }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/app.css')}}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

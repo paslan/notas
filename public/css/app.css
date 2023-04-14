@@ -1,0 +1,29 @@
+.tabela-cab
+{
+    border: none;
+    width: 100%;
+}
+.tabela-footer
+{
+    border: none;
+    width: 100%;
+}
+.tabela-corpo
+{
+    background:white;border:4px solid black;
+    width:100%;
+}
+.tabela-externa
+{
+    background:white;border:4px solid black;
+    width:100%;
+}
+td {border:none}
+.corpo { font-size: 20px; }
+.titulo { font-size: 20px;
+          font-weight: bold;
+}
+.cabecalho { font-size: 15px; }
+.tipo { font-size: 34px;
+        font-weight: bold;
+}

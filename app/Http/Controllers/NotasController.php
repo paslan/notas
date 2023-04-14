@@ -220,6 +220,7 @@ class NotasController extends Controller
     public function chartnf($id){
         $nota = Notasfiscais::find($id);
         $empresa = Empresa::find($nota->empresa_id);
+        $contrato = Contrato::find($nota->contrato_id);
 
         $notas = DB::table('notasfiscais')
                 ->select(
@@ -243,18 +244,20 @@ class NotasController extends Controller
 
         //dd($result);
 
+        
          foreach ($notas as $key => $value)
         {
             $result[$value->mes] = [$value->mes, floatval($value->total_valor)];
             ++$key;
         }
 
-        
         //dd($result);
 
         return view('chart-nf',[
+            'nota'      => $nota,
             'notas'     => $notas,
             'empresa'   => $empresa,
+            'contrato'  => $contrato,
             'result'    => $result,
         ]);
     }
