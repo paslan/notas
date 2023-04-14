@@ -131,10 +131,12 @@ td
                     </tr>
                     <tr>
                       @foreach ($result as $key => $value)
-                        <td>
-                         {{--  {{ floatval($result[$key][1]) }} --}}
-                         {{  number_format((float)$result[$key][1], 2, '.', '') }}
-                        </td>
+                        @if ($key >=1)
+                          <td>
+                              {{--  {{ floatval($result[$key][1]) }} --}}
+                              {{  number_format((float)$result[$key][1], 2, '.', '') }}
+                          </td>
+                        @endif
                       @endforeach
                       <td>0.00</td>
                     </tr>
