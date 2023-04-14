@@ -148,6 +148,80 @@ td
                   <div id="curve_chart" style="width: 100%; height: 500px"></div>
                 </td>
               </tr>
+              <tr>
+                <td colspan="3">
+                  <table border="2 px solid" width="100%">
+                    <tr>
+                      <th width="32%">Empresa</th>
+                      <th width="42%">Serviços Prestados</th>
+                      <th width="6%">Valor unitário</th>
+                      <th width="8%">Total Realizado</th>
+                      <th width="12%">Total</th>
+                    </tr>
+                    <tr>
+                      <td rowspan="10">{{ trim($empresa->razao_social) }}</td>
+                      <td>{{ $contrato->objeto }}</td>
+                      <td>{{  number_format((float)$nota->valor, 2, '.', '') }}</td>
+                      <td>{{  number_format((float)$nota->valor, 2, '.', '') }}</td>
+                      <td>{{ number_format((float)$total, 2, '.', '')  }}</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                </table>
+                </td>
+              </tr>
             </table>
         </td>
       </tr>
