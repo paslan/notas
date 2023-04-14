@@ -134,11 +134,11 @@ td
                         @if ($key >=1)
                           <td>
                               {{--  {{ floatval($result[$key][1]) }} --}}
-                              {{  number_format((float)$result[$key][1], 2, '.', '') }}
+                              R$ {{  number_format((float)$result[$key][1], 2, ',', '.') }}
                           </td>
                         @endif
                       @endforeach
-                      <td>{{ number_format((float)$total, 2, '.', '')  }}</td>
+                      <td>R$ {{ number_format((float)$total, 2, ',', '.')  }}</td>
                     </tr>
                   </table>
                 </td>
@@ -154,16 +154,16 @@ td
                     <tr>
                       <th width="32%">Empresa</th>
                       <th width="42%">Serviços Prestados</th>
-                      <th width="6%">Valor unitário</th>
+                      <th width="8%">Valor unitário</th>
                       <th width="8%">Total Realizado</th>
                       <th width="12%">Total</th>
                     </tr>
                     <tr>
-                      <td rowspan="10">{{ trim($empresa->razao_social) }}</td>
+                      <td rowspan="11">{{ trim($empresa->razao_social) }}</td>
                       <td>{{ $contrato->objeto }}</td>
-                      <td>{{  number_format((float)$nota->valor, 2, '.', '') }}</td>
-                      <td>{{  number_format((float)$nota->valor, 2, '.', '') }}</td>
-                      <td>{{ number_format((float)$total, 2, '.', '')  }}</td>
+                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
+                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
+                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
@@ -218,6 +218,12 @@ td
                       <td></td>
                       <td></td>
                       <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">
+                        Valor Total da Nota
+                      </td>
+                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
                     </tr>
                 </table>
                 </td>
