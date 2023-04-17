@@ -1,6 +1,12 @@
 <html>
     <head>
       <style>
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-stretch: condensed;
+}
+
 .tabela-cab-grafico
 {
     background:white;border:2px solid black;
@@ -18,7 +24,7 @@
 .tabela-externa-grafico
 {
     background:white;border:4px solid black;
-    width:100%;
+    width:1000px;
 }
 .linha
 {
@@ -32,11 +38,6 @@
 .coluna-borda
 {
   border: 2px solid;
-}
-td
-{
-  /* border: 2px solid; */
-
 }
 
       </style>
@@ -109,7 +110,7 @@ td
                 <td>Período: {{ $nota->competencia }}</td>
               </tr>
               <tr>
-                <td colspan="3">Controle de Pagamento</td>
+                <td colspan="3"><br><br>Controle de Pagamento</td>
               </tr>
               <tr>
                 <td colspan="3">
@@ -152,24 +153,18 @@ td
                 <td colspan="3">
                   <table border="2 px solid" width="100%">
                     <tr>
-                      <th width="32%">Empresa</th>
-                      <th width="42%">Serviços Prestados</th>
-                      <th width="8%">Valor unitário</th>
-                      <th width="8%">Total Realizado</th>
-                      <th width="12%">Total</th>
+                      <th>Empresa</th>
+                      <th>Serviços Prestados</th>
+                      <th>Valor unitário</th>
+                      <th>Total Realizado</th>
+                      <th>Total</th>
                     </tr>
                     <tr>
                       <td rowspan="11">{{ trim($empresa->razao_social) }}</td>
                       <td>{{ $contrato->objeto }}</td>
-                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
-                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
-                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td align="right">R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
+                      <td align="right">R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
+                      <td align="right">R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
@@ -223,15 +218,25 @@ td
                       <td colspan="3">
                         Valor Total da Nota
                       </td>
-                      <td>R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
+                      <td align="right">R$ {{  number_format((float)$nota->valor, 2, ',', '.') }}</td>
                     </tr>
                 </table>
+                <table width="100%" border="2 px solid">
+                  <tr valign="top">
+                    <td colspan="3" height="150">Observação</td>
+                  </tr>
+                  <tr valign="top">
+                    <td height="150" width="33%" align="center">Responsável pela Elaboração deste Relatório<br>(SPDM - HMB)</td>
+                    <td height="150" align="center">Gerência Administrativa<br>(SPDM - HMB)</td>
+                    <td height="150" align="center">Diretoria<br>(SPDM - HMB)</td>
+                  </tr>
+              </table>
                 </td>
               </tr>
             </table>
         </td>
       </tr>
       </table>
-    </body>
+</body>
   </html>
   
