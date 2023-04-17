@@ -43,6 +43,10 @@
                 </ul>
             </div>
             </div>
+            <form action="logout" method="post">
+                @csrf
+                <button class="btn btn-danger btn-sm" type="submit">Logout</button>
+            </form>
         </nav>
     </body>
 </html>
