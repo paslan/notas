@@ -7,6 +7,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\PropostaController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\CustoController;
 use App\Http\Controllers\NotasController;
 use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\TesteController;
@@ -66,6 +67,8 @@ Route::resource('contatos', ContatoController::class);
 Route::resource('notas', NotasController::class);
 
 Route::resource('processos', ProcessoController::class);
+
+Route::resource('custos', CustoController::class);
 
 
 Route::get('/dashboard', function () {
