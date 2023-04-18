@@ -40,6 +40,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('processos.index') }}">Processos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('custos.index') }}">Centro de Custos</a>
+                </li>
                 </ul>
             </div>
             </div>

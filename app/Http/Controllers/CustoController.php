@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateCustoFormRequest;
+use App\Models\Custo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CustoController extends Controller
 {
@@ -11,9 +15,19 @@ class CustoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //dd($request->campo);
+
+
+        $data = DB::table('custos')
+        ->where($request->campo == null ? 'ccusto' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderby('ccusto')
+        ->paginate();
+
+
+        return view('./custos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
     }
 
     /**
@@ -23,7 +37,7 @@ class CustoController extends Controller
      */
     public function create()
     {
-        //
+        return view('./custos/create');
     }
 
     /**
@@ -32,9 +46,15 @@ class CustoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateCustoFormRequest $request)
     {
-        //
+        $data = $request->all();
+        //dd($request -> assinado);
+
+        $custo = Custo::create($data);
+
+        return redirect()->route('custos.index')->with('success', 'Centro de Custo adicionado com sucesso.');
+
     }
 
     /**
@@ -45,7 +65,12 @@ class CustoController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd($contato);
+        $custo = Custo::find($id);
+        return view('./custos/show', [
+            'custo' => $custo,
+        ]);
+       
     }
 
     /**
@@ -56,7 +81,11 @@ class CustoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $custo = Custo::find($id);
+        return view('./custos/edit', [
+            'custo' => $custo,
+        ]);
+
     }
 
     /**
@@ -66,9 +95,17 @@ class CustoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCustoFormRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        //dd($request->empresa_id);
+
+        Custo::findOrFail($request->id)->update($data);
+
+        return redirect()->route('custos.index')
+                         ->with('success', 'Centro de Custo atualizado com sucesso.');
+
     }
 
     /**

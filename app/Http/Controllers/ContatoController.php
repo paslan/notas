@@ -71,12 +71,12 @@ class ContatoController extends Controller
      */
     public function show(Contato $contato)
     {
-                //dd($contato);
-                $empresa = Empresa::find($contato->empresa_id);
-                return view('./contatos/show', [
-                    'contato' => $contato,
-                    'empresa'  => $empresa,
-                ]);
+        //dd($contato);
+        $empresa = Empresa::find($contato->empresa_id);
+        return view('./contatos/show', [
+            'contato' => $contato,
+            'empresa'  => $empresa,
+        ]);
 
     }
 
