@@ -11,6 +11,7 @@ use App\Http\Controllers\CustoController;
 use App\Http\Controllers\NotasController;
 use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\UserController;
 use App\Models\Notasfiscais;
 use App\Models\Processo;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -32,6 +33,13 @@ Route::get('/', function () {
     //return view('welcome');
     return view('index');
 })->middleware(['auth', 'verified'])->name('menu');;
+
+Route::get('/welcome', function () {
+    //return view('welcome');
+    return view('welcome');
+})->middleware(['auth', 'verified'])->name('welcome');;
+
+
 
 
 Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'gerapdf'])->name('notas.pdf');
@@ -69,6 +77,8 @@ Route::resource('notas', NotasController::class);
 Route::resource('processos', ProcessoController::class);
 
 Route::resource('custos', CustoController::class);
+
+Route::resource('usuarios', UserController::class);
 
 
 Route::get('/dashboard', function () {

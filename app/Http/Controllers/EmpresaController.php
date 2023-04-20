@@ -25,7 +25,6 @@ class EmpresaController extends Controller
     {
         //dd($request->campo);
 
-
         $data = DB::table('empresas')
         ->where($request->campo == null ? 'nome' :  $request->campo, 'LIKE', "%{$request->search}%")
         ->orderby('nome')
