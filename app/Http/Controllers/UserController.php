@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateUsuarioFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,9 @@ class UserController extends Controller
     {
         //dd($request->campo);
 
-        $data = DB::table('usuarios') 
-        ->where($request->campo == null ? 'nome' :  $request->campo, 'LIKE', "%{$request->search}%")
-        ->orderby('nome')
+        $data = DB::table('users') 
+        ->where($request->campo == null ? 'name' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderby('name')
         ->paginate();
 
 
@@ -55,9 +56,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $usuario)
     {
-        //
+        return view('./usuarios/show', [
+            'usuario' => $usuario,
+        ]);
+
     }
 
     /**
@@ -68,7 +72,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+
+        return view('./usuarios/edit', [
+            'usuario'   => $usuario,
+        ]);
     }
 
     /**
@@ -78,9 +86,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateUsuarioFormRequest $request, $id)
     {
-        //
+        //dd($request);
+        $data = $request->all();
+
+        //dd($request->empresa_id);
+
+        User::findOrFail($request->id)->update($data);
+
+        return redirect()->route('usuarios.index')
+                         ->with('success', 'Usuario atualizado com sucesso.');
     }
 
     /**

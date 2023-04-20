@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col col-md-10"><b>usuarios</b></div>
 			<div class="col col-md-2">
-				<a href="{{ route('usuarios.create') }}" class="btn btn-outline-success btn-sm">Add</a>
+				<a href="{{ route('register') }}" class="btn btn-outline-success btn-sm">Add</a>
 				<a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>
 			</div>
 		</div>
@@ -33,9 +33,9 @@
                 </div>
                 <div class="col-sm-2">
                     <select class="form-select" name="campo" id="campo">
-                        <option value="nome">Nome</option>
+                        <option value="name">Nome</option>
                         <option value="email">E-mail</option>
-                        <option value="Admin">Admin</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
             <div class="col-sm-2">
@@ -58,17 +58,18 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->nome }}</td>
-						<td style="width:50%">{{ $row->email }}</td>
-						<td>{{ $row->admin }}</td>
+						<td style="width:30%">{{ $row->name }}</td>
+						<td style="width:45%">{{ $row->email }}</td>
+						<td style="width:5%">{{ ($row->admin == 0 ? 'Não' : 'Sim') }}</td>
 						<td>
 							<form method="post" action="{{ route('usuarios.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
 								<a href="{{ route('usuarios.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
 								<a href="{{ route('usuarios.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
-								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
-							</form>
+								<a href="{{ route('password.request') }}" class="btn btn-outline-dark btn-sm">Reset</a>
+{{-- 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
+ --}}							</form>
 						</td>
 					</tr>
 
