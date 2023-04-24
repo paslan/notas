@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUpdateCustoFormRequest;
-use App\Models\Custo;
+use App\Http\Requests\StoreUpdateUserparamRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Userparam;
 
-
-class CustoController extends Controller
+class UserparamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +18,17 @@ class CustoController extends Controller
     public function index(Request $request)
     {
         //dd($request->campo);
-
-
-        $data = DB::table('custos')
-        ->where($request->campo == null ? 'ccusto' :  $request->campo, 'LIKE', "%{$request->search}%")
-        ->orderby('ccusto')
+        
+        $data = DB::table('userparams')
+        ->join('users', 'userparams.user_id', '=', 'users.id')
+        ->join('custos', 'userparams.custo_id', '=', 'custos.id')
+        ->where($request->campo == null ? 'user_id' :  $request->campo, 'LIKE', "%{$request->search}%")
+        ->orderby('user_id')
         ->paginate();
 
+        //dd($data);
 
-        return view('./custos/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('./userparams/index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
 
@@ -37,7 +39,11 @@ class CustoController extends Controller
      */
     public function create()
     {
-        return view('./custos/create');
+        $usuarios = User::doesntHave('parametro')->get();
+
+        //dd($usuarios);
+        
+        return view('./userparams/create', compact('usuarios'));
     }
 
     /**
@@ -46,14 +52,14 @@ class CustoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateCustoFormRequest $request)
+    public function store(StoreUpdateUserparamRequest $request)
     {
         $data = $request->all();
-        //dd($request -> assinado);
+        //dd($request);
 
-        $custo = Custo::create($data);
+        $custo = Userparam::create($data);
 
-        return redirect()->route('custos.index')->with('success', 'Centro de Custo adicionado com sucesso.');
+        return redirect()->route('userparams.index')->with('success', 'Parametro adicionado com sucesso.');
 
     }
 
@@ -66,11 +72,11 @@ class CustoController extends Controller
     public function show($id)
     {
         //dd($contato);
-        $custo = Custo::find($id);
-        return view('./custos/show', [
-            'custo' => $custo,
+        $userparam = Userparam::find($id);
+        return view('./userparam/show', [
+            'userparam' => $userparam,
         ]);
-       
+        
     }
 
     /**
@@ -81,11 +87,7 @@ class CustoController extends Controller
      */
     public function edit($id)
     {
-        $custo = Custo::find($id);
-        return view('./custos/edit', [
-            'custo' => $custo,
-        ]);
-
+        //
     }
 
     /**
@@ -95,17 +97,9 @@ class CustoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateCustoFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        //dd($request->empresa_id);
-
-        Custo::findOrFail($request->id)->update($data);
-
-        return redirect()->route('custos.index')
-                         ->with('success', 'Centro de Custo atualizado com sucesso.');
-
+        //
     }
 
     /**
@@ -118,15 +112,4 @@ class CustoController extends Controller
     {
         //
     }
-
-    public function encontraCustos(Request $request){
-
-        $custos = DB::table('custos')->whereNotIn('id', function($q){
-            $q->select('custo_id')->from('userparams');
-        })->get();
-
-        return $custos;
-    }
-
-
 }

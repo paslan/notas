@@ -67,8 +67,6 @@
                 }
 
 
-                
-
                 function changeCity(response) {
                     //alert(response.value);
                     $.ajax({
@@ -88,6 +86,29 @@
                         },
                     });
                 }
+
+
+                function changeCusto(response) {
+                    //alert(response.value);
+                    $.ajax({
+                        url: $(response).data('url'),
+                        type: 'post',
+                        data: {_method: 'post', _token: $(response).data('token'), user_id: response.value},
+                        success: function(res) {
+                            $("#custo_id").empty();
+                            $('#custo_id').append('<option selected value=' + "0" + '>' + "Selecione..." + '</option>');
+                            $.each( res, function(a, b) {
+                                $('#custo_id').append($('<option>', {value: b['id'], text: b['desc_ccusto']}));
+
+                            });
+                        },
+                        error: function(){
+                            console.log('error');
+                        },
+                    });
+                }
+
+
 
                 function maiuscula(z){
                     v = z.value.toUpperCase();

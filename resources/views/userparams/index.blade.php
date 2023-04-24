@@ -18,24 +18,24 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-10"><b>usuarios</b></div>
+			<div class="col col-md-10"><b>Parametros</b></div>
 			<div class="col col-md-2">
-				<a href="{{ route('register') }}" class="btn btn-outline-success btn-sm">Add</a>
+				<a href="{{ route('userparams.create') }}" class="btn btn-outline-success btn-sm">Add</a>
 				<a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>
 			</div>
 		</div>
 	</div>
     <div>
-        <form action="{{ route('usuarios.index') }}" method="get">
+        <form action="{{ route('userparams.index') }}" method="get">
             <div class="row">
                 <div class="col-sm-3">
                     <input type="text" name="search" id="search" placeholder="Pesquisar">
                 </div>
                 <div class="col-sm-2">
                     <select class="form-select" name="campo" id="campo">
-                        <option value="name">Nome</option>
-                        <option value="email">E-mail</option>
-                        <option value="admin">Admin</option>
+                        <option value="nome">Nome</option>
+                        <option value="razao_social">Razão Social</option>
+                        <option value="CNPJ">CNPJ</option>
                     </select>
                 </div>
             <div class="col-sm-2">
@@ -49,8 +49,9 @@
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">Nome</th>
-				<th scope="col">Email</th>
-				<th scope="col">Admin</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">CCusto</th>
+				<th scope="col">Descrição</th>
 			</tr>
 			@if(count($data) > 0)
 
@@ -58,17 +59,18 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:30%">{{ $row->name }}</td>
-						<td style="width:45%">{{ $row->email }}</td>
-						<td style="width:5%">{{ ($row->admin == 0 ? 'Não' : 'Sim') }}</td>
+						<td style="width:10%">{{ $row->name }}</td>
+						<td style="width:30%">{{ $row->email }}</td>
+						<td style="width:10%">{{ $row->ccusto }}</td>
+						<td>{{ $row->desc_ccusto }}</td>
 						<td>
-							<form method="post" action="{{ route('usuarios.destroy', $row->id) }}">
+							<form method="post" action="{{ route('userparams.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
-								<a href="{{ route('usuarios.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
-								<a href="{{ route('usuarios.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
-{{-- 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
- --}}							</form>
+								<a href="{{ route('userparams.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
+								<a href="{{ route('userparams.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
+								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
+							</form>
 						</td>
 					</tr>
 

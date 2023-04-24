@@ -14,4 +14,9 @@ class Custo extends Model
         'desc_ccusto',
     ];
 
+    public function parametro()
+    {
+        return $this->hasOne(Userparam::class);
+    }
+
 }

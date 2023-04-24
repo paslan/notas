@@ -12,8 +12,10 @@ use App\Http\Controllers\NotasController;
 use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserparamController;
 use App\Models\Notasfiscais;
 use App\Models\Processo;
+use App\Models\Userparam;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +31,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     //return view('welcome');
     return view('index');
 })->middleware(['auth', 'verified'])->name('menu');;
+ */
+Route::get('/', function () {
+    //return view('welcome');
+    return view('index');
+})->name('menu');;
+
 
 Route::get('/welcome', function () {
     //return view('welcome');
@@ -58,6 +66,9 @@ Route::post('encontrar-contratos', [ContratoController::class, 'encontraContrato
 
 Route::post('encontrar-notas', [NotasController::class, 'encontraNotas']);
 
+Route::post('encontrar-custos', [CustoController::class, 'encontraCustos']);
+
+
 Route::get('processos/capa/{id}/{tipo?}', [ProcessoController::class, 'capas'])->name('processos.capas');
 
 Route::resource('estados', EstadoController::class);
@@ -79,6 +90,8 @@ Route::resource('processos', ProcessoController::class);
 Route::resource('custos', CustoController::class);
 
 Route::resource('usuarios', UserController::class);
+
+Route::resource('userparams', UserparamController::class);
 
 
 Route::get('/dashboard', function () {
