@@ -78,7 +78,7 @@ class ProcessoController extends Controller
         //dd($nota->competencia);
 
         //$pdf = PDF::Loadview('capas', compact('data', 'tipo'));
-        return view('capas', compact('processo', 'empresa', 'nota', 'tipo'));
+        return view('.\relatorios\capas', compact('processo', 'empresa', 'nota', 'tipo'));
         //return $pdf->setPaper('a4', 'landscape')->stream('ListaEmpresas');
         //return $pdf->setPaper('a4')->stream('Capas');
     }
