@@ -26,7 +26,7 @@ class StoreUpdateEmpresaFormRequest extends FormRequest
     {
         $rules =
         [
-            'nome'          => 'required|string|max:255|min:3',
+            'razao_social'  => 'required',
 
             'endereco'      => 'required',
             'nro'           => 'required',
@@ -38,7 +38,7 @@ class StoreUpdateEmpresaFormRequest extends FormRequest
         {
             $rules +=
             [
-                'razao_social'  => 'required|unique:empresas,razao_social',
+                'nome'          => 'required|string|max:255|min:3|unique:empresas,nome',
                 'cnpj'          => 'required|unique:empresas,cnpj',
             ];
         }
@@ -47,7 +47,7 @@ class StoreUpdateEmpresaFormRequest extends FormRequest
         {
             $rules +=
             [
-                'razao_social'  =>
+                'nome'  =>
                 [
                     'required',
                     Rule::unique('empresas')->ignore($this->empresa),

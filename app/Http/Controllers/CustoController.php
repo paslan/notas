@@ -116,7 +116,20 @@ class CustoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$custo = Custo::withCount('parametro')->findOrFail($id)){
+            return redirect()->route('custos.index')->with('success', 'Centro de Custo não encontrado! ');
+        }
+
+        if ($custo->parametro_count > 0){
+            return redirect()->route('custos.index')->with('error', 'Erro: Impossível exluir! - Centro de Custo possui Usuários vinculados! ');
+        }
+
+        $custo->delete();
+
+        return redirect()->route('custos.index')->with('success', 'Centro de Custo excluido com sucesso.');
+
+
+
     }
 
     public function encontraCustos(Request $request){

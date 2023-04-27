@@ -58,8 +58,8 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->nome }}</td>
-						<td style="width:50%">{{ $row->razao_social }}</td>
+						<td style="width:20%">{{ $row->nome }}</td>
+						<td style="width:40%">{{ $row->razao_social }}</td>
 						<td>{{ $row->cnpj }}</td>
 						<td>
 							<form method="post" action="{{ route('empresas.destroy', $row->id) }}">
