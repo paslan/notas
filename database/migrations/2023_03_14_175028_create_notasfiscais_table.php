@@ -22,6 +22,9 @@ return new class extends Migration
             $table->date('data_vencto');
             $table->tinyInteger('mes_competencia');
             $table->tinyInteger('ano_competencia');
+            $table->char('competencia', 7);
+            $table->decimal('valor',8,2);
+            $table->date('data_pagto')->nullable();
             $table->timestamps();
         });
     }

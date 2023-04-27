@@ -20,6 +20,11 @@ class Contrato extends Model
         'fim_vigencia',
         'valor',
         'empresa_id',
+        'desc_ci',
+        'obrigacao1',
+        'obrigacao2',
+        'obrigacao3',
+        'obrigacao4',
     ];
 
 

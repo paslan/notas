@@ -99,7 +99,7 @@ class CustoController extends Controller
     {
         $data = $request->all();
 
-        //dd($request->empresa_id);
+        //dd($request->id);
 
         Custo::findOrFail($request->id)->update($data);
 

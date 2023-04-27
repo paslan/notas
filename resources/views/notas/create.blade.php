@@ -54,6 +54,7 @@
 				<label class="col-sm-2 col-label-form">Nro. NF</label>
 				<label class="col-sm-2 col-label-form">Emissão</label>
 				<label class="col-sm-2 col-label-form">Vencto</label>
+				<label class="col-sm-2 col-label-form">Pagto</label>
 				<label class="col-sm-1 col-label-form">Mês</label>
 				<label class="col-sm-1 col-label-form">Ano</label>
                 <div class="row"></div>
@@ -65,6 +66,9 @@
 				</div>
                 <div class="col-sm-2">
 					<input type="date" name="data_vencto" class="form-control" value="{{ old('data_vencto') }}"/>
+				</div>
+                <div class="col-sm-2">
+					<input type="date" name="data_pagto" class="form-control" value="{{ old('data_pagto') }}"/>
 				</div>
                 <div class="col-sm-1">
                     <select class="form-select" name="mes_competencia" id="mes_competencia">
@@ -87,9 +91,6 @@
                         <option value="{{ date("Y") }}" >{{ date("Y") }}</option>
                         <option value="{{ date("Y") }}" >{{ date("Y")+1 }}</option>
                     </select>
-				</div>
-                <div class="col-sm-2">
-					<input type="text" name="competencia" class="form-control" value="{{ old('competencia') }}"/>
 				</div>
 			</div>
 			<div class="text-center">

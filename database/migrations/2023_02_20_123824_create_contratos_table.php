@@ -25,7 +25,11 @@ return new class extends Migration
             $table->date('fim_vigencia');
             $table->double('valor', 8, 2);
             $table->tinyInteger('ultimo_ta');
-
+            $table->string('desc_ci', 255)->nullable();
+            $table->string('obrigacao1', 255)->nullable();
+            $table->string('obrigacao2', 255)->nullable();
+            $table->string('obrigacao3', 255)->nullable();
+            $table->string('obrigacao4', 255)->nullable();
             $table->timestamps();
 
             $table->foreignid('empresa_id')->constrained();

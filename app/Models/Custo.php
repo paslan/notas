@@ -16,7 +16,7 @@ class Custo extends Model
 
     public function parametro()
     {
-        return $this->hasOne(Userparam::class);
+        return $this->hasMany(Userparam::class);
     }
 
 }

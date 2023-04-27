@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateCustoFormRequest extends FormRequest
@@ -23,11 +24,9 @@ class StoreUpdateCustoFormRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            'ccusto'    => [
-                'required',
-                'unique:custos,ccusto'
-        ],
+            'ccusto'    => 'required',
         ];
     }
 }

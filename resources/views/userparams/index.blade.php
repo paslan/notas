@@ -33,9 +33,9 @@
                 </div>
                 <div class="col-sm-2">
                     <select class="form-select" name="campo" id="campo">
-                        <option value="nome">Nome</option>
-                        <option value="razao_social">Razão Social</option>
-                        <option value="CNPJ">CNPJ</option>
+                        <option value="user->name">Nome</option>
+                        <option value="user->email">E-mail</option>
+                        <option value="custo->ccusto">CCusto</option>
                     </select>
                 </div>
             <div class="col-sm-2">
@@ -59,10 +59,10 @@
 
 					<tr>
 						<td scope="row">{{ $row->id }}</td>
-						<td style="width:10%">{{ $row->name }}</td>
-						<td style="width:30%">{{ $row->email }}</td>
-						<td style="width:10%">{{ $row->ccusto }}</td>
-						<td>{{ $row->desc_ccusto }}</td>
+						<td style="width:25%">{{ $row->user->name }}</td>
+						<td style="width:30%">{{ $row->user->email }}</td>
+						<td style="width:10%">{{ $row->custo->ccusto }}</td>
+						<td>{{ $row->custo->desc_ccusto }}</td>
 						<td>
 							<form method="post" action="{{ route('userparams.destroy', $row->id) }}">
 								@csrf

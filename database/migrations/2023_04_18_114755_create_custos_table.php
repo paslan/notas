@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('custos', function (Blueprint $table) {
             $table->id();
             $table->string('ccusto', 20);
-            $table->string('desc_ccusto', 15)->nullable();
+            $table->string('desc_ccusto', 255)->nullable();
             $table->timestamps();
         });
     }

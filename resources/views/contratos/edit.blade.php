@@ -91,6 +91,36 @@
 					<input type="text" name="ultimo_ta" class="form-control" value="{{ $contrato->ultimo_ta }}"/>
 				</div>
 			</div>
+			<div class="row mb-3">
+				<label class="col-sm-6 col-label-form">Descrição Controle Interno</label>
+				<div class="col-sm-12">
+					<input type="text" name="desc_ci" class="form-control" value="{{ $contrato->desc_ci }}"/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-6 col-label-form">Obrigação 1</label>
+				<div class="col-sm-12">
+					<input type="text" name="obrigacao1" class="form-control" value="{{ $contrato->obrigacao1 }}"/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-6 col-label-form">Obrigação 2</label>
+				<div class="col-sm-12">
+					<input type="text" name="obrigacao2" class="form-control" value="{{ $contrato->obrigacao2 }}"/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-6 col-label-form">Obrigação 3</label>
+				<div class="col-sm-12">
+					<input type="text" name="obrigacao3" class="form-control" value="{{ $contrato->obrigacao3 }}"/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-6 col-label-form">Obrigação 4</label>
+				<div class="col-sm-12">
+					<input type="text" name="obrigacao4" class="form-control" value="{{ $contrato->obrigacao4 }}"/>
+				</div>
+			</div>
 			<div class="text-center">
 				<input type="submit" class="btn btn-outline-primary" value="Save" />
 			</div>

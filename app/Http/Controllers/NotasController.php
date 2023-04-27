@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateNotasFormRequest;
 use App\Models\Contrato;
+use App\Models\Custo;
 use App\Models\Empresa;
 use App\Models\Notasfiscais;
 use App\Models\Processo;
+use App\Models\User;
+use App\Models\Userparam;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Khill\Lavacharts\Lavacharts;
 
@@ -217,7 +221,49 @@ class NotasController extends Controller
         return $notas->where('empresa_id', '=', $request['empresa_id']);
     }
 
+    public function controlei($id)
+    {
+        $nota = Notasfiscais::find($id);
+        $empresa = Empresa::find($nota->empresa_id);
+        $contrato = Contrato::find($nota->contrato_id);
+
+        //dd($contrato);
+        return view('relatorios.controlei', [
+            'nota'      => $nota,
+            'empresa'   => $empresa,
+            'contrato'  => $contrato,
+        ]);
+    }
+
+
+    public function checkl($id)
+    {
+        $nota = Notasfiscais::find($id);
+        $empresa = Empresa::find($nota->empresa_id);
+        $contrato = Contrato::find($nota->contrato_id);
+
+        //dd($contrato);
+        return view('relatorios.checkl', [
+            'nota'      => $nota,
+            'empresa'   => $empresa,
+            'contrato'  => $contrato,
+        ]);
+    }
+
+
+
+
     public function chartnf($id){
+
+        //dd(Auth::user()->id);
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id)
+        ->load(['parametro']);
+        $param = $user->parametro->load(['custo']);
+        $custo = $param->custo;
+        
+        //dd($custo);
+       
         $nota = Notasfiscais::find($id);
         $empresa = Empresa::find($nota->empresa_id);
         $contrato = Contrato::find($nota->contrato_id);
@@ -254,7 +300,8 @@ class NotasController extends Controller
 
         //dd($result);
 
-        return view('chart-nf',[
+        return view('relatorios.chart-nf',[
+            'custo'     => $custo,
             'nota'      => $nota,
             'notas'     => $notas,
             'empresa'   => $empresa,

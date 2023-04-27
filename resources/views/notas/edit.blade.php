@@ -59,6 +59,9 @@
 				<label class="col-sm-2 col-label-form">Nro. NF</label>
 				<label class="col-sm-2 col-label-form">Emissão</label>
 				<label class="col-sm-2 col-label-form">Vencto</label>
+				<label class="col-sm-2 col-label-form">Pagto</label>
+				<label class="col-sm-1 col-label-form">Mês</label>
+				<label class="col-sm-1 col-label-form">Ano</label>
                 <div class="row"></div>
 				<div class="col-sm-2">
                     <input type="text" name="nronf" id="nronf" class="form-control" placeholder="nro NF" value="{{ $nota->nronf }}">
@@ -68,6 +71,9 @@
 				</div>
                 <div class="col-sm-2">
 					<input type="date" name="data_vencto" class="form-control" value="{{ $nota->data_vencto }}"/>
+				</div>
+                <div class="col-sm-2">
+					<input type="date" name="data_pagto" class="form-control" value="{{ $nota->data_pagto }}"/>
 				</div>
                 <div class="col-sm-1">
 					<input type="text" name="mes_competencia" class="form-control" value="{{ $nota->mes_competencia }}"/>

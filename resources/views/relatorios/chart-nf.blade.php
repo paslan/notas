@@ -98,11 +98,11 @@ body {
               </tr>
               <tr>
                 <td colspan="2" width="60%" >Objeto do Contrato: {{ $contrato->objeto }}</td>
-                <td>Emissão: {{ $nota->data_emissao }}</td>
+                <td>Emissão: {{ date( 'd/m/Y' , strtotime($nota->data_emissao)) }}</td>
               </tr>
               <tr>
-                <td colspan="2" width="60%" >Centro de Custo: 123456789</td>
-                <td>Vencimento: {{ $nota->data_vencto }}</td>
+                <td colspan="2" width="60%" >Centro de Custo: {{ $custo->ccusto }}</td>
+                <td>Vencimento: {{ date( 'd/m/Y' , strtotime($nota->data_vencto)) }}</td>
               </tr>
               <tr>
                 <td width="60%" >Solicitante do Controle: TI</td>
@@ -116,19 +116,19 @@ body {
                 <td colspan="3">
                   <table width="100%" border="2px solid" class="tabela-pagto">
                     <tr>
-                      <td>Janeiro</td>
-                      <td>Fevereiro</td>
-                      <td>Março</td>
-                      <td>Abril</td>
-                      <td>Maio</td>
-                      <td>Junho</td>
-                      <td>Julho</td>
-                      <td>Agosto</td>
-                      <td>Setembro</td>
-                      <td>Outubro</td>
-                      <td>Novembro</td>
-                      <td>Dezembro</td>
-                      <td>{{ $nota->ano_competencia  }}</td>
+                      <td align="center">Janeiro</td>
+                      <td align="center">Fevereiro</td>
+                      <td align="center">Março</td>
+                      <td align="center">Abril</td>
+                      <td align="center">Maio</td>
+                      <td align="center">Junho</td>
+                      <td align="center">Julho</td>
+                      <td align="center">Agosto</td>
+                      <td align="center">Setembro</td>
+                      <td align="center">Outubro</td>
+                      <td align="center">Novembro</td>
+                      <td align="center">Dezembro</td>
+                      <td align="center">{{ $nota->ano_competencia  }}</td>
                     </tr>
                     <tr>
                       @foreach ($result as $key => $value)

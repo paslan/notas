@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignid('empresa_id')->constrained();
             $table->string('nome', 100);
             $table->string('email1', 70);
+            $table->string('email2', 70)->nullable();
             $table->string('telefone1', 15)->nullable();
             $table->string('telefone2', 15)->nullable();
             $table->timestamps();

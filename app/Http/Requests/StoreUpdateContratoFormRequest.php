@@ -29,6 +29,7 @@ class StoreUpdateContratoFormRequest extends FormRequest
             'descricao'         => 'required|string|min:10',
             'inicio_vigencia'   => 'required',
             'fim_vigencia'      => 'required',
+            'desc_ci'           => 'required',
         ];
     }
 }

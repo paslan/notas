@@ -66,7 +66,7 @@
             <td align="center">Rua Ângela Mirella, n° 354 - Jardim Barueri - Barueri - SP - CEP: 06411-330.</td>
         </tr>
     </table>
-</head>
+    </head>
 <body>
 
 </body>

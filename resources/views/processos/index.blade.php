@@ -20,8 +20,8 @@
 		<div class="row">
 			<div class="col col-md-10"><b>Processos</b></div>
 			<div class="col col-md-2">
-				<a href="{{ route('processos.create') }}" class="btn btn-outline-success btn-sm">Add</a>
-				<a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>
+{{-- 				<a href="{{ route('processos.create') }}" class="btn btn-outline-success btn-sm">Add</a>
+ --}}				<a href="{{ route('menu') }}" class="btn btn-outline-primary btn-sm">Menu</a>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
     </div>
 	<div class="card-body">
 		<table class="table table-bordered table-sm">
-			<tr>
+			<tr align="center">
 				<th scope="col">Id</th>
 				<th scope="col">NF</th>
 				<th scope="col">C</th>
@@ -58,29 +58,44 @@
 
 				@foreach($data as $row)
 
+					
+
 					<tr>
-						<td scope="row">{{ $row->id }}</td>
-						<td scope="row">{{ $row->notasfiscais_id }}</td>
-						<td style="width:9%">{{ $row->capa_C }}</td>
-						<td style="width:9%">{{ $row->capa_I }}</td>
-						<td style="width:9%">{{ $row->capa_G }}</td>
-						<td style="width:9%">{{ $row->capa_T }}</td>
-						<td style="width:9%">{{ $row->capa_P }}</td>
+						<td align="center" scope="row">{{ $row->id }}</td>
+						<td align="center" scope="row">{{ $row->notasfiscais_id }}</td>
+						<td style="width:9%">{{ $row->capa_C <> "" ? date( 'd/m/Y' , strtotime($row->capa_C)) : "" }}</td>
+						<td style="width:9%">{{ $row->capa_I <> "" ? date( 'd/m/Y' , strtotime($row->capa_I)) : "" }}</td>
+						<td style="width:9%">{{ $row->capa_G <> "" ? date( 'd/m/Y' , strtotime($row->capa_G)) : "" }}</td>
+						<td style="width:9%">{{ $row->capa_T <> "" ? date( 'd/m/Y' , strtotime($row->capa_T)) : "" }}</td>
+						<td style="width:9%">{{ $row->capa_P <> "" ? date( 'd/m/Y' , strtotime($row->capa_P)) : "" }}</td>
 						<td>
 							<form method="post" action="{{ route('processos.destroy', $row->id) }}">
 								@csrf
 								@method('DELETE')
 								<div class="btn-group" role="group" aria-label="Capas">
-									<a href="{{ url("processos/capa/{$row->id}/C") }}" target="blank" class="btn btn-outline-secondary btn-sm">Cobrança</a>
-									<a href="{{ url("processos/capa/{$row->id}/I") }}" target="blank" class="btn btn-outline-secondary btn-sm">Interno</a>
-									<a href="{{ url("processos/capa/{$row->id}/G") }}" target="blank" class="btn btn-outline-secondary btn-sm">Gráfico</a>
-									<a href="{{ url("processos/capa/{$row->id}/T") }}" target="blank" class="btn btn-outline-secondary btn-sm">Contrato</a>
-									<a href="{{ url("processos/capa/{$row->id}/P") }}" target="blank" class="btn btn-outline-secondary btn-sm">Pagamento</a>
+									<div class="btn-group" role="group">
+										<button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  Capas
+										</button>
+										<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+											<a class="dropdown-item" href="{{ url("processos/capa/{$row->id}/C") }}" target="blank" class="btn btn-outline-secondary btn-sm">Cobrança</a>
+											<a class="dropdown-item" href="{{ url("processos/capa/{$row->id}/I") }}" target="blank" class="btn btn-outline-secondary btn-sm">Interno</a>
+											<a class="dropdown-item" href="{{ url("processos/capa/{$row->id}/G") }}" target="blank" class="btn btn-outline-secondary btn-sm">Gráfico</a>
+											<a class="dropdown-item" href="{{ url("processos/capa/{$row->id}/T") }}" target="blank" class="btn btn-outline-secondary btn-sm">Contrato</a>
+											<a class="dropdown-item" href="{{ url("processos/capa/{$row->id}/P") }}" target="blank" class="btn btn-outline-secondary btn-sm">Pagamento</a>
+										</div>
+										<div class="btn-group" role="group">
+											<a href="{{ url("chart-nf/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">Gráfico</a>
+											<a href="{{ url("controlei/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">CI</a>
+											<a href="{{ url("checkl/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">Check List</a>
+										</div>
+									</div>
+
 								</div>
-								<a href="{{ route('processos.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
+{{-- 								<a href="{{ route('processos.show', $row->id) }}" class="btn btn-outline-primary btn-sm">View</a>
 								<a href="{{ route('processos.edit', $row->id) }}" class="btn btn-outline-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" onclick="return confirm('Confirma a exclusão deste registro ?')" />
-							</form>
+ --}}							</form>
 						</td>
 					</tr>
 

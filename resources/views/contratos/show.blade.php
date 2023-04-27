@@ -65,6 +65,37 @@
                 {{ $contrato->ultimo_ta }}
             </div>
         </div>
+        <div class="row mb-3">
+            <label class="col-sm-6 col-label-form">Descrição Controle Interno</label>
+            <div class="col-sm-12">
+                {{ $contrato->desc_ci }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-6 col-label-form">Obrigação 1</label>
+            <div class="col-sm-12">
+                {{ $contrato->obrigacao1 }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-6 col-label-form">Obrigação 2</label>
+            <div class="col-sm-12">
+                {{ $contrato->obrigacao2 }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-6 col-label-form">Obrigação 3</label>
+            <div class="col-sm-12">
+                {{ $contrato->obrigacao3 }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-6 col-label-form">Obrigação 4</label>
+            <div class="col-sm-12">
+                {{ $contrato->obrigacao4 }}
+            </div>
+        </div>
+
 	</div>
 </div>
 

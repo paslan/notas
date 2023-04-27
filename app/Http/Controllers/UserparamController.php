@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateUserparamRequest;
+use App\Models\Custo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -19,12 +20,10 @@ class UserparamController extends Controller
     {
         //dd($request->campo);
         
-        $data = DB::table('userparams')
-        ->join('users', 'userparams.user_id', '=', 'users.id')
-        ->join('custos', 'userparams.custo_id', '=', 'custos.id')
-        ->where($request->campo == null ? 'user_id' :  $request->campo, 'LIKE', "%{$request->search}%")
-        ->orderby('user_id')
+        $data = Userparam::where($request->campo == null ? 'id' :  $request->campo, 'LIKE', "%{$request->search}%")
         ->paginate();
+
+        $data->load(['user', 'custo']);
 
         //dd($data);
 
@@ -41,9 +40,11 @@ class UserparamController extends Controller
     {
         $usuarios = User::doesntHave('parametro')->get();
 
+        $custos = Custo::all();
+
         //dd($usuarios);
         
-        return view('./userparams/create', compact('usuarios'));
+        return view('./userparams/create', compact(['usuarios', 'custos']));
     }
 
     /**
@@ -55,10 +56,15 @@ class UserparamController extends Controller
     public function store(StoreUpdateUserparamRequest $request)
     {
         $data = $request->all();
+        
         //dd($request);
 
-        $custo = Userparam::create($data);
+        $userparam = Userparam::where('user_id', '=', $request->user_id );
 
+        //$user = $userparam->load('user');
+
+
+        $custo = Userparam::create($data);
         return redirect()->route('userparams.index')->with('success', 'Parametro adicionado com sucesso.');
 
     }
@@ -71,10 +77,23 @@ class UserparamController extends Controller
      */
     public function show($id)
     {
-        //dd($contato);
-        $userparam = Userparam::find($id);
-        return view('./userparam/show', [
-            'userparam' => $userparam,
+
+/*         $data = DB::table('userparams')
+        ->join('users', 'userparams.user_id', '=', 'users.id')
+        ->join('custos', 'userparams.custo_id', '=', 'custos.id')
+        ->where('userparams.id', '=', $id)
+        ->get();
+ */        
+        $data = Userparam::find($id);
+
+        //dd($data);
+
+        $data->load(['user', 'custo']);
+        
+        //dd($data->user->name);
+
+        return view('./userparams/show', [
+            'data' => $data,
         ]);
         
     }
@@ -87,7 +106,15 @@ class UserparamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userparam = Userparam::find($id);
+        $usuarios  = User::all()->where('id', $userparam->user_id);
+        $custos    = Custo::all()->where('id', $userparam->custo_id);
+        return view('./userparams/edit', [
+            'userparam' => $userparam,
+            'usuarios' => $usuarios,
+            'custos' => $custos
+        ]);
+
     }
 
     /**
@@ -110,6 +137,10 @@ class UserparamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $userparam = Userparam::find($id);
+        $userparam->delete();
+
+        return redirect()->route('userparams.index')->with('success', 'Parametro excluido com sucesso.');
+
     }
 }

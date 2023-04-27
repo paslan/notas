@@ -104,6 +104,7 @@ class ContratoController extends Controller
     {
         $contrato = Contrato::find($id);
         $data = $request->all();
+        //dd($data);
         $contrato->update($data);
 
         return redirect()->route('contratos.index')->with('success', 'Contrato atualizado com sucesso!');

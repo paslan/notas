@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('propostas', function (Blueprint $table) {
             $table->id();
 
+            $table->tinyInteger('tipo')->default(1);
+
             $table->longText('objeto');
             $table->string('descricao',255);
             $table->foreignId('contrato_id')->constrained();
