@@ -88,6 +88,7 @@
 											<a href="{{ url("chart-nf/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">Gráfico</a>
 											<a href="{{ url("controlei/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">CI</a>
 											<a href="{{ url("checkl/{$row->id}") }}" target="blank" class="btn btn-outline-secondary btn-sm">Check List</a>
+											<a href="{{ url("completo/{$row->id}/X") }}" target="blank" class="btn btn-outline-secondary btn-sm">Completo</a>
 										</div>
 									</div>
 

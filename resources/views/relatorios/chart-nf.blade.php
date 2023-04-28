@@ -1,47 +1,6 @@
 <html>
     <head>
-      <style>
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-stretch: condensed;
-}
-
-.tabela-cab-grafico
-{
-    background:white;border:2px solid black;
-    width: 100%;
-}
-.tabela-footer
-{
-    width: 100%;
-}
-.tabela-corpo-grafico
-{
-    background:white;border:4px solid black;
-    width:100%;
-}
-.tabela-externa-grafico
-{
-    background:white;border:4px solid black;
-    width:1000px;
-}
-.linha
-{
-  text-align: center;
-}
-.linha-borda
-{
-  border: 2px solid;
-  text-align: center;
-}
-.coluna-borda
-{
-  border: 2px solid;
-}
-
-      </style>
-
+      <link rel="stylesheet" href="{{ asset('/css/app.css')}}">
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
 
@@ -68,7 +27,7 @@ body {
         }
       </script>
     </head>
-    <body>
+    <body class="corpo-grafico">
       <table class="tabela-externa-grafico">
         <tr>
           <td>

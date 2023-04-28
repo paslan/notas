@@ -52,6 +52,8 @@ Route::get('/welcome', function () {
 
 Route::get('pdf/{id}/{emp}/{tipo}', [NotasController::class, 'gerapdf'])->name('notas.pdf');
 
+Route::get('completo/{id}/{tipo}', [NotasController::class, 'completo'])->name('notas.completo');
+
 Route::get('chart-nf/{id}', [NotasController::class, 'chartnf'])->name('notas.chartnf');
 
 Route::get('controlei/{id}', [NotasController::class, 'controlei'])->name('notas.controlei');

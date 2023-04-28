@@ -250,8 +250,58 @@ class NotasController extends Controller
         ]);
     }
 
+    public function completo($id, $tipo)
+    {
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id)
+        ->load(['parametro']);
+        $param = $user->parametro->load(['custo']);
+        $custo = $param->custo;
+
+        $nota = Notasfiscais::find($id);
+        $empresa = Empresa::find($nota->empresa_id);
+        $contrato = Contrato::find($nota->contrato_id);
+
+        $notas = DB::table('notasfiscais')
+        ->select(
+            DB::raw("mes_competencia as mes"),
+            DB::raw("sum(valor) as total_valor"))
+        ->where('ano_competencia', '=', $nota->ano_competencia)
+        ->where('empresa_id', '=', $nota->empresa_id)
+        ->groupBy(DB::raw("mes_competencia"))
+        ->get();
 
 
+        //com Googlechart
+        $result[] = ['Mes', 'Valor'];
+
+        for ($i=1; $i<=12 ; ++$i) 
+        {
+            $result[$i] = [$i, 0.00];
+        }
+
+        //dd($result);
+
+        $total = 0;
+            foreach ($notas as $key => $value)
+        {
+            $result[$value->mes] = [$value->mes, floatval($value->total_valor)];
+            $total += floatval($value->total_valor);
+            ++$key;
+        }
+        
+        //dd($contrato);
+        return view('relatorios.completo', [
+            'custo'     => $custo,
+            'nota'      => $nota,
+            'empresa'   => $empresa,
+            'contrato'  => $contrato,
+            'tipo'      => $tipo,
+            'result'    => $result,
+            'total'     => $total,
+        ]);
+
+    }
 
     public function chartnf($id){
 
